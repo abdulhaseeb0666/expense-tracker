@@ -38,7 +38,7 @@ export const register = async (req, res) => {
         await Session.create({
             user: user._id,
             refreshToken: token,
-            expiresIn: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+            expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
         });
 
         // 6. Send response

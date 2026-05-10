@@ -3,8 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import helmet from "helmet";
-import mongoSanitize from "express-mongo-sanitize";
-import xss from "xss-clean";
 import rateLimit from "express-rate-limit";
 
 const app = express();
@@ -12,8 +10,6 @@ dotenv.config();
 
 connectDB();
 
-app.use(xss());
-app.use(mongoSanitize());
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
