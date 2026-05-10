@@ -25,6 +25,8 @@ import userRoutes from "./routes/userRoutes.js";
 import walletRoutes from "./routes/walletRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import transactionroutes from "./routes/transactionRoutes.js";
+import analyticsRoutes from "./routes/analyticsRoutes.js";
+import budgetRoutes from "./routes/budgetRoutes.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 
 // Routes
@@ -32,7 +34,8 @@ app.use("/api/users" , userRoutes);
 app.use("/api/wallets" , walletRoutes);
 app.use("/api/auth" , authRoutes);
 app.use("/api/transactions" , transactionroutes);
-
+app.use("/api/analytics" , analyticsRoutes);
+app.use("/api/budgets" , budgetRoutes);
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT , () => {
