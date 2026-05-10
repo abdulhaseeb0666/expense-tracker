@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 import connectDB from "./config/db.js";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
@@ -13,7 +14,7 @@ connectDB();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(path.resolve() , "public")));
 app.use(express.urlencoded({extended : true}));
 
 app.use(rateLimit({

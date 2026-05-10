@@ -3,6 +3,8 @@ import Wallet from "../models/Wallet.js";
 import Transaction from "../models/Transaction.js";
 import Session from "../models/Session.js";
 import bcrypt from "bcryptjs";
+import fs from "fs";
+import path from "path";
 
 export const getProfile = async (req, res) => {
     try {
@@ -33,27 +35,45 @@ export const updateProfile = async (req, res) => {
         const user = await User.findById(req.user._id);
 
         if (!user) {
+            if(req.file){
+                fs.unlinkSync(req.file.path);
+            }
             return res.status(404).json({
                 success: false,
                 message: "User not found"
             });
         }
 
-        const { name, email, password, currency, avatar } = req.body;
+        const { name, email, password, currency } = req.body;
 
         // Update fields if provided
         if (name) user.name = name;
         if (email) user.email = email;
         if (currency) user.currency = currency;
-        if (avatar) user.avatar = avatar;
 
+        
         // If password is being updated, hash it
         if (password) {
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(password, salt);
         }
+        
+        let oldAvatarPath = null;
+
+        if (req.file) {
+            if (user.avatar) {
+                oldAvatarPath = path.join(path.resolve(), "public", user.avatar);
+            }
+            user.avatar = `uploads/avatars/${req.file.filename}`;
+        }
 
         const updatedUser = await user.save();
+        
+        if(oldAvatarPath){
+            if (fs.existsSync(oldAvatarPath)) {
+                fs.unlinkSync(oldAvatarPath);
+            }
+        }
 
         res.status(200).json({
             success: true,
@@ -68,6 +88,9 @@ export const updateProfile = async (req, res) => {
         });
 
     } catch (error) {
+        if (req.file && fs.existsSync(req.file.path)) {
+            fs.unlinkSync(req.file.path);
+        }
         res.status(500).json({
             success: false,
             message: error.message
@@ -89,6 +112,13 @@ export const deleteAccount = async (req, res) => {
         await Wallet.deleteMany({ user: req.user._id });
         await Transaction.deleteMany({ user: req.user._id });
         await Session.deleteMany({ user: req.user._id });
+
+        if (user.avatar) {
+            const oldAvatarPath = path.join(path.resolve(), "public", user.avatar);
+            if (fs.existsSync(oldAvatarPath)) {
+                fs.unlinkSync(oldAvatarPath);
+            }
+        }
         await User.findByIdAndDelete(req.user._id);
 
         res.status(200).json({
