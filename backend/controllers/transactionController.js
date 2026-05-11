@@ -5,6 +5,7 @@ export const createTransaction = async (req, res) => {
     try {
         const userId = req.user._id;
 
+
         const {
             wallet,
             type,
@@ -14,10 +15,31 @@ export const createTransaction = async (req, res) => {
             note
         } = req.body;
 
+        const currentwallet = await Wallet.findOne({
+            $and: [
+                { user: userId },
+                { name: wallet }
+            ]
+        });
+
+        if(!currentwallet) {
+            return res.status(404).json({
+                success: false,
+                message: "Wallet not found"
+            });
+        }
+        
+        if(type==="expense" && currentwallet.balance < amount) {
+            return res.status(400).json({
+                success: false,
+                message: "Insufficient balance"
+            });
+        }
+
         // 1. Create transaction
         const transaction = await Transaction.create({
             user: userId,
-            wallet,
+            wallet : currentwallet._id,
             type,
             category,
             title,
@@ -25,17 +47,14 @@ export const createTransaction = async (req, res) => {
             note
         });
 
-        // 2. Update wallet balance
-        const newwallet = await Wallet.findById(wallet);
-
-        if (newwallet) {
+        if (currentwallet) {
             if (type === "income") {
-                newwallet.balance += amount;
+                currentwallet.balance += Number(amount);
             } else {
-                newwallet.balance -= amount;
+                currentwallet.balance -= Number(amount);
             }
 
-            await newwallet.save();
+            await currentwallet.save();
         }
 
         res.status(201).json({
