@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { registerUser } from "../../services/authService";
 import AuthForm from "../../components/auth/AuthForm";
 import AuthHeader from "../../components/auth/AuthHeader";
 import AuthLayout from "../../layouts/AuthLayout";
@@ -6,10 +9,19 @@ import AuthLayout from "../../layouts/AuthLayout";
 const Register = () => {
     const [loading, setLoading] = useState(false);
 
+    const navigate = useNavigate();
+
     const handleRegister = async (data) => {
-        setLoading(true);
-        console.log("Register data:", data);
-        setLoading(false);
+        try {
+            setLoading(true);
+            await registerUser(data);
+            toast.success("Registration successful");
+            navigate("/login");
+        } catch (error) {
+            toast.error(error.response?.data?.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
