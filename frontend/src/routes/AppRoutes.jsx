@@ -21,6 +21,7 @@ import Profile from "../pages/profile/Profile";
 
 import ProtectedRoute from "../components/common/ProtectedRoute";
 import NotFound from "../pages/error/NotFound";
+import Home from "../pages/home/Home";
 
 const AppRoutes = () => {
     return (
@@ -28,6 +29,7 @@ const AppRoutes = () => {
 
             <Routes>
 
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 
