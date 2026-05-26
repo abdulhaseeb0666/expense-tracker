@@ -16,10 +16,8 @@ export const createTransaction = async (req, res) => {
         } = req.body;
 
         const currentwallet = await Wallet.findOne({
-            $and: [
-                { user: userId },
-                { name: wallet }
-            ]
+            _id: wallet,
+            user: userId
         });
 
         if(!currentwallet) {

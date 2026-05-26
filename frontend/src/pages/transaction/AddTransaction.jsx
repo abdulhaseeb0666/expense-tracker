@@ -1,9 +1,18 @@
 import DashboardLayout from "../../layouts/DashboardLayout";
 import TransactionForm from "../../components/transaction/TransactionForm";
+import useTransactions from "../../hooks/useTransactions";
 
 const AddTransaction = () => {
-    const handleSubmit = (data) => {
-        console.log("New Transaction:", data);
+
+    const { addTransaction } = useTransactions();
+
+   const handleSubmit = async (data) => {
+        try {
+            await addTransaction(data);
+            toast.success("Transaction added");
+        } catch (error) {
+            toast.error(error.response?.data?.message);
+        }
     };
 
     return (
