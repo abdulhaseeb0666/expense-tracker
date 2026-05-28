@@ -1,27 +1,86 @@
+// src/pages/dashboard/Dashboard.jsx
+
 import DashboardLayout from "../../layouts/DashboardLayout";
-import SummaryCards from "../../components/dashboard/SummaryCards";
+
 import BalanceCard from "../../components/dashboard/BalanceCard";
+import SummaryCards from "../../components/dashboard/SummaryCards";
 import RecentTransactions from "../../components/dashboard/RecentTransactions";
+import ExpenseChart from "../../components/dashboard/ExpenseChart";
+import IncomeChart from "../../components/dashboard/IncomeChart";
+
+import Loader from "../../components/common/Loader";
+
+import useAnalytics from "../../hooks/useAnalytics";
+import useTransactions from "../../hooks/useTransactions";
 
 const Dashboard = () => {
-    const dummyData = {
-        income: 50000,
-        expense: 20000,
-        balance: 30000
-    };
 
-    const dummyTransactions = [
-        { _id: 1, title: "Salary", amount: 50000, type: "income" },
-        { _id: 2, title: "Food", amount: 2000, type: "expense" }
-    ];
+    const {
+        summary,
+        loading,
+        error
+    } = useAnalytics();
+
+    const {
+        transactions
+    } = useTransactions();
+
+    if (loading) {
+        return (
+            <DashboardLayout>
+                <Loader />
+            </DashboardLayout>
+        );
+    }
+
+    if (error) {
+        return (
+            <DashboardLayout>
+                <div className="bg-red-100 text-red-600 p-4 rounded">
+                    {error}
+                </div>
+            </DashboardLayout>
+        );
+    }
 
     return (
         <DashboardLayout>
+
             <div className="space-y-6">
-                <BalanceCard balance={dummyData.balance} />
-                <SummaryCards data={dummyData} />
-                <RecentTransactions transactions={dummyTransactions} />
+
+                {/* Top Statistics */}
+                <div className="flex flex-col gap-6">
+
+                    <BalanceCard
+                        balance={summary?.balance || 0}
+                    />
+
+                    <SummaryCards
+                        data={{
+                            income: summary?.income || 0,
+                            expense: summary?.expense || 0,
+                            balance: summary?.balance || 0
+                        }}
+                    />
+
+                </div>
+
+                {/* Charts */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <IncomeChart />
+
+                    <ExpenseChart />
+
+                </div>
+
+                {/* Recent Transactions */}
+                <RecentTransactions
+                    transactions={transactions}
+                />
+
             </div>
+
         </DashboardLayout>
     );
 };

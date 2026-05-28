@@ -1,11 +1,12 @@
 import Transaction from "../models/Transaction.js";
 import Wallet from "../models/Wallet.js";
+import Budget from "../models/Budget.js";
 
 export const createTransaction = async (req, res) => {
     try {
         const userId = req.user._id;
 
-
+        
         const {
             wallet,
             type,
@@ -53,6 +54,18 @@ export const createTransaction = async (req, res) => {
             }
 
             await currentwallet.save();
+        }
+
+        if (type === "expense") {
+            const budget = await Budget.findOne({
+                user: userId,
+                category
+            });
+            if(budget){
+                budget.spent += Number(amount);
+
+                await budget.save();
+            }
         }
 
         res.status(201).json({
@@ -211,6 +224,26 @@ export const deleteTransaction = async (req, res) => {
             }
 
             await wallet.save();
+        }
+
+        // Reverse budget effect if expense
+        if (transaction.type === "expense") {
+
+            const budget = await Budget.findOne({
+                user: req.user._id,
+                category: transaction.category
+            });
+
+            if (budget) {
+
+                budget.spent -= Number(transaction.amount);
+
+                if (budget.spent < 0) {
+                    budget.spent = 0;
+                }
+
+                await budget.save();
+            }
         }
 
         await transaction.deleteOne();

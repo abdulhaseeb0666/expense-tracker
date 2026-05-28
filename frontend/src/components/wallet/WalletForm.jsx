@@ -24,13 +24,6 @@ const WalletForm = ({ onSubmit }) => {
                 className="border p-2 w-full"
             />
 
-            <input
-                name="balance"
-                placeholder="Initial Balance"
-                onChange={handleChange}
-                className="border p-2 w-full"
-            />
-
             <button className="bg-black text-white p-2 w-full">
                 Create Wallet
             </button>

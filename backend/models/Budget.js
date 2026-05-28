@@ -17,6 +17,11 @@ const budgetSchema = new mongoose.Schema({
         required: true
     },
 
+    spent : {
+        type: Number,
+        default: 0
+    },
+
     period: {
         type: String,
         enum: ["monthly", "weekly"],

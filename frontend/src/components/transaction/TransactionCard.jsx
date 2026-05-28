@@ -1,23 +1,22 @@
 import formatCurrency from "../../utils/formatCurrency";
-import { FaRegTrashAlt } from "react-icons/fa";
 import useTransactions from "../../hooks/useTransactions";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const TransactionCard = ({ transaction }) => {
 
     const { removeTransaction } = useTransactions();
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
 
         const confirmDelete = window.confirm(
             `Delete "${transaction.title}" transaction?`
         );
 
         if (confirmDelete) {
-            removeTransaction(transaction._id);
-            
+            await removeTransaction(transaction._id);
+            window.location.reload();
         }
     };
-
 
     return (
         <div className="p-3 border rounded flex justify-between">

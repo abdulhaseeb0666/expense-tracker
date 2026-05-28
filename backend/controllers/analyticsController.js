@@ -23,7 +23,12 @@ export const getSummary = async (req, res) => {
             if (item._id === "expense") expense = item.total;
         });
 
-        const balance = income - expense;
+        const walletData = await Wallet.aggregate([
+            { $match: { user: userId } },
+            { $group: { _id: null, totalBalance: { $sum: "$balance" } } }
+        ]);
+
+        const balance = walletData[0]?.totalBalance || 0;
         const savingsRate = income > 0 ? (balance / income) * 100 : 0;
 
         res.json({
