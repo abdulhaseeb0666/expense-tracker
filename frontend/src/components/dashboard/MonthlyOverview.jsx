@@ -1,5 +1,3 @@
-// src/components/dashboard/IncomeChart.jsx
-
 import {
     BarChart,
     Bar,
@@ -13,11 +11,7 @@ import {
 
 import formatCurrency from "../../utils/formatCurrency";
 
-const IncomeChart = ({ data = [] }) => {
-
-    console.log("IncomeChart received data:", data);
-
-    console.log("IncomeChart data:", data);
+const MonthlyOverview = ({ data = [] }) => {
 
     const chartData = data.map((item) => (
         item._id.type === "income" ? {
@@ -29,7 +23,6 @@ const IncomeChart = ({ data = [] }) => {
         }
     ));
 
-    console.log(chartData);
 
     return (
         <div className="bg-white p-5 rounded shadow">
@@ -88,4 +81,4 @@ const IncomeChart = ({ data = [] }) => {
     );
 };
 
-export default IncomeChart;
+export default MonthlyOverview;

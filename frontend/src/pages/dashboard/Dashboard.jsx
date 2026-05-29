@@ -6,7 +6,7 @@ import BalanceCard from "../../components/dashboard/BalanceCard";
 import SummaryCards from "../../components/dashboard/SummaryCards";
 import RecentTransactions from "../../components/dashboard/RecentTransactions";
 import ExpenseChart from "../../components/dashboard/ExpenseChart";
-import IncomeChart from "../../components/dashboard/IncomeChart";
+import MonthlyOverview from "../../components/dashboard/MonthlyOverview";
 
 import Loader from "../../components/common/Loader";
 
@@ -69,7 +69,7 @@ const Dashboard = () => {
                 {/* Charts */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <IncomeChart data={monthlyStats} />
+                    <MonthlyOverview data={monthlyStats} />
 
                     <ExpenseChart />
 
