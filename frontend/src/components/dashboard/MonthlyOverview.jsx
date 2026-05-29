@@ -16,14 +16,32 @@ const MonthlyOverview = ({ data = [] }) => {
     const chartData = data.map((item) => (
         item._id.type === "income" ? {
             month: item._id.month,
-            income: item.total || 0
+            income: item.total || 0  
         } : {
             month: item._id.month,
             expense: item.total || 0
         }
     ));
+    
+    const uniqueMonths = [...new Set(chartData.map(item => item.month))];
+    
+    uniqueMonths.forEach((month) => {
+        let balance = 0;
+        chartData.forEach((item) => {
+            if (item.month === month) {
+                balance += item.income || 0;
+                balance -= item.expense || 0;
+            }
+        });
+        chartData.push({
+            month: month,
+            profit: balance
+        })
+    });  
 
-
+    console.log("Data: " , data);
+    console.log("Chart Data: " , chartData);
+    console.log("Unique Months: " , uniqueMonths);
     return (
         <div className="bg-white p-5 rounded shadow">
 
@@ -41,7 +59,7 @@ const MonthlyOverview = ({ data = [] }) => {
 
             <div className="h-80">
 
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" >
 
                     <BarChart data={chartData}>
 
@@ -51,14 +69,10 @@ const MonthlyOverview = ({ data = [] }) => {
 
                         <YAxis />
 
-                        <Tooltip
-                            formatter={(value) =>
-                                formatCurrency(value)
-                            }
-                        />
-
                         <Legend />
 
+                        <Tooltip formatter={(value) => formatCurrency(value)} />
+                            
                         <Bar
                             dataKey="income"
                             radius={[6, 6, 0, 0]}
@@ -69,6 +83,12 @@ const MonthlyOverview = ({ data = [] }) => {
                             dataKey="expense"
                             radius={[6, 6, 0, 0]}
                             fill="#f87171"
+                        />
+
+                        <Bar
+                            dataKey="profit"
+                            radius={[6, 6, 0, 0]}
+                            fill="#fbbf24"
                         />
 
                     </BarChart>

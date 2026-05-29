@@ -5,7 +5,7 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 import BalanceCard from "../../components/dashboard/BalanceCard";
 import SummaryCards from "../../components/dashboard/SummaryCards";
 import RecentTransactions from "../../components/dashboard/RecentTransactions";
-import ExpenseChart from "../../components/dashboard/ExpenseChart";
+import WalletOverview from "../../components/dashboard/WalletOverview";
 import MonthlyOverview from "../../components/dashboard/MonthlyOverview";
 
 import Loader from "../../components/common/Loader";
@@ -18,8 +18,10 @@ const Dashboard = () => {
     const {
         summary,
         loading,
+        error,
         monthlyStats,
-        error
+        categoryStats,
+        walletStats
     } = useAnalytics();
 
     const {
@@ -71,7 +73,7 @@ const Dashboard = () => {
 
                     <MonthlyOverview data={monthlyStats} />
 
-                    <ExpenseChart />
+                    <WalletOverview data={walletStats} />
 
                 </div>
 
