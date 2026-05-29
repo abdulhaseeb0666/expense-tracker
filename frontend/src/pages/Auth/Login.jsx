@@ -5,9 +5,17 @@ import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
 
-    const navigate = useNavigate();
-    const { login } = useAuth();
 
+    
+    const navigate = useNavigate();
+    
+    if(localStorage.getItem("token")) {
+        toast.info("You are already logged in");
+        navigate("/dashboard");
+    }
+    
+    const { login } = useAuth();
+    
     const [formData, setFormData] = useState({
         email: "",
         password: ""
