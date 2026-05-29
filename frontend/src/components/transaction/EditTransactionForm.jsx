@@ -52,8 +52,8 @@ const EditTransactionForm = ({
                 name="wallet"
                 value={formData.wallet}
                 onChange={handleChange}
-                className="w-full border p-3 rounded"
-                required
+                className="w-full border p-3 rounded text-gray-500"
+                disabled
             >
 
                 <option value="">
