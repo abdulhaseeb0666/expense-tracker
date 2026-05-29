@@ -159,11 +159,9 @@ export const updateTransaction = async (req, res) => {
         transaction.type = type || transaction.type;
         transaction.category = category || transaction.category;
         transaction.title = title || transaction.title;
-        transaction.amount = amount ?? transaction.amount;
+        transaction.amount = amount || transaction.amount;
         transaction.note = note || transaction.note;
-
-        await transaction.save();
-
+        
         // Adjust wallet balance if amount/type changed
         const wallet = await Wallet.findById(transaction.wallet);
 
@@ -181,10 +179,20 @@ export const updateTransaction = async (req, res) => {
             } else {
                 wallet.balance -= transaction.amount;
             }
+            
+            if(wallet.balance < 0) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Insufficient balance in wallet after update",
+                    transaction
+                });
+            }
 
             await wallet.save();
         }
-
+        
+        await transaction.save();
+        
         res.status(200).json({
             success: true,
             message: "Transaction updated",

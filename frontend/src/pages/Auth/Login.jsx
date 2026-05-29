@@ -1,19 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
-
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-
-
     
     const navigate = useNavigate();
-    
-    if(localStorage.getItem("token")) {
-        toast.info("You are already logged in");
-        navigate("/dashboard");
-    }
-    
     const { login } = useAuth();
     
     const [formData, setFormData] = useState({

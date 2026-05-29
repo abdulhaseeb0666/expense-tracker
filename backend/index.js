@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended : true}));
 
 app.use(rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100
+    max: 100000000
 }));
 
 import userRoutes from "./routes/userRoutes.js";
