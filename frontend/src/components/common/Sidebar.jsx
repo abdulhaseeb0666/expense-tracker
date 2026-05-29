@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
     return (
-        <div className="w-64 bg-black text-white min-h-screen p-5">
+        <div className="w-64 bg-black text-white h-screen  p-5 sticky top-0">
 
             <h2 className="text-2xl font-bold mb-10">
                 Dashboard

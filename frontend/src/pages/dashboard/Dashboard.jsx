@@ -18,6 +18,7 @@ const Dashboard = () => {
     const {
         summary,
         loading,
+        monthlyStats,
         error
     } = useAnalytics();
 
@@ -68,7 +69,7 @@ const Dashboard = () => {
                 {/* Charts */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <IncomeChart />
+                    <IncomeChart data={monthlyStats} />
 
                     <ExpenseChart />
 
