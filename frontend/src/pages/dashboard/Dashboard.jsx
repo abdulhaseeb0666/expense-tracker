@@ -12,6 +12,7 @@ import Loader from "../../components/common/Loader";
 
 import useAnalytics from "../../hooks/useAnalytics";
 import useTransactions from "../../hooks/useTransactions";
+import CategoryOverview from "../../components/dashboard/CategoryOverview";
 
 const Dashboard = () => {
 
@@ -68,13 +69,12 @@ const Dashboard = () => {
 
                 </div>
 
+                <MonthlyOverview data={monthlyStats} />
+
                 {/* Charts */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                    <MonthlyOverview data={monthlyStats} />
-
                     <WalletOverview data={walletStats} />
-
+                    <CategoryOverview data={categoryStats} />
                 </div>
 
                 {/* Recent Transactions */}

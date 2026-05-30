@@ -122,6 +122,28 @@ export const getWalletStats = async (req, res) => {
                         }
                     }
                 }
+            },
+            {
+                $lookup: {
+                    from: "wallets",
+                    localField: "_id",
+                    foreignField: "_id",
+                    as: "wallet"
+                }
+            },
+            {
+                $unwind: {
+                    path: "$wallet",
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $project: {
+                    _id: 1,
+                    walletName: "$wallet.name",
+                    income: 1,
+                    expense: 1
+                }
             }
         ]);
 

@@ -6,42 +6,51 @@ import {
     CartesianGrid,
     Tooltip,
     ResponsiveContainer,
-    Legend
+    Legend,
+    ReferenceArea
 } from "recharts";
+
+const COLORS = [
+    "#7dd3fc", // light blue
+    "#86efac", // light green
+    "#ef9a9a", // light red
+    "#fda4c0", // light pink
+    "#c4b5fd", // light purple
+    "#fcd34d", // light yellow
+];
 
 import formatCurrency from "../../utils/formatCurrency";
 
 const MonthlyOverview = ({ data = [] }) => {
 
-    const chartData = data.map((item) => (
-        item._id.type === "income" ? {
-            month: item._id.month,
-            income: item.total || 0  
-        } : {
-            month: item._id.month,
-            expense: item.total || 0
-        }
-    ));
-    
-    const uniqueMonths = [...new Set(chartData.map(item => item.month))];
-    
-    uniqueMonths.forEach((month) => {
-        let balance = 0;
-        chartData.forEach((item) => {
-            if (item.month === month) {
-                balance += item.income || 0;
-                balance -= item.expense || 0;
-            }
-        });
-        chartData.push({
-            month: month,
-            profit: balance
-        })
-    });  
+    const monthlyMap = {};
 
-    console.log("Data: " , data);
-    console.log("Chart Data: " , chartData);
-    console.log("Unique Months: " , uniqueMonths);
+    data.forEach((item) => {
+        const month = item._id.month;
+
+        if (!monthlyMap[month]) {
+            monthlyMap[month] = {
+                month,
+                income: 0,
+                expense: 0,
+                profit: 0
+            };
+        }
+
+        if (item._id.type === "income") {
+            monthlyMap[month].income = item.total;
+        } else {
+            monthlyMap[month].expense = item.total;
+        }
+
+        monthlyMap[month].profit =
+            monthlyMap[month].income -
+            monthlyMap[month].expense;
+    });
+
+    const chartData = Object.values(monthlyMap);
+
+
     return (
         <div className="bg-white p-5 rounded shadow">
 
@@ -62,6 +71,16 @@ const MonthlyOverview = ({ data = [] }) => {
                 <ResponsiveContainer width="100%" height="100%" >
 
                     <BarChart data={chartData}>
+        
+                        {chartData.map((month, index) => (
+                            <ReferenceArea
+                                key={month.month}
+                                x1={month.month}
+                                x2={month.month}
+                                fill={COLORS[index % COLORS.length]}
+                                fillOpacity={0.3}
+                            />
+                        ))}
 
                         <CartesianGrid strokeDasharray="2 3" />
 
@@ -71,22 +90,29 @@ const MonthlyOverview = ({ data = [] }) => {
 
                         <Legend />
 
-                        <Tooltip formatter={(value) => formatCurrency(value)} />
+                        <Tooltip 
+                            formatter={(value) =>
+                                formatCurrency(value)
+                            }
+                        />
                             
                         <Bar
                             dataKey="income"
+                            name="Income"
                             radius={[6, 6, 0, 0]}
                             fill="#1eb2a6"
                         />
 
                         <Bar
                             dataKey="expense"
+                            name="Expense"
                             radius={[6, 6, 0, 0]}
                             fill="#f87171"
                         />
 
                         <Bar
                             dataKey="profit"
+                            name="Profit"
                             radius={[6, 6, 0, 0]}
                             fill="#fbbf24"
                         />
