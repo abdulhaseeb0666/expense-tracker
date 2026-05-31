@@ -77,61 +77,204 @@ const Transactions = () => {
     return (
         <DashboardLayout>
 
-            <div className="flex justify-between items-center mb-6">
+            <div className="space-y-6">
 
-                <h1 className="text-3xl font-bold">
-                    Transactions
-                </h1>
+                {/* Page Header */}
+                <div
+                    className="
+                        bg-white
+                        rounded-3xl
+                        border border-[#D9E8E3]
+                        shadow-lg
+                        p-6
+                    "
+                >
 
-                <Button onClick={() => setOpenModal(true)}>
-                    Add Transaction
-                </Button>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
-            </div>
+                        <div>
 
-            <div className="mb-6">
+                            <h1 className="text-3xl font-bold text-[#2F6B5F]">
+                                Transactions
+                            </h1>
 
-                <TransactionFilters setFilter={setFilter} />
+                            <p className="text-slate-500 mt-1">
+                                Track and manage your income and expenses
+                            </p>
 
-            </div>
+                        </div>
 
-            {loading ? (
-                <Loader />
-            ) : filteredTransactions.length > 0 ? (
-                <TransactionList
-                    transactions={filteredTransactions}
-                />
-            ) : (
-                <div className="bg-white p-6 rounded shadow text-center">
+                        <Button
+                            onClick={() => setOpenModal(true)}
+                            className="
+                                bg-[#2F6B5F]
+                                hover:bg-[#24564C]
+                                px-6
+                            "
+                        >
+                            + Add Transaction
+                        </Button>
 
-                    <p className="text-gray-500">
-                        No transactions found
-                    </p>
+                    </div>
 
                 </div>
-            )}
 
+                {/* Filters Section */}
+                <div
+                    className="
+                        bg-white
+                        rounded-3xl
+                        border border-[#D9E8E3]
+                        shadow-md
+                        p-5
+                    "
+                >
+
+                    <div className="flex items-center justify-between mb-4">
+
+                        <h2 className="font-semibold text-lg text-slate-700">
+                            Filters
+                        </h2>
+
+                        <span className="text-sm text-slate-400">
+                            Refine transaction history
+                        </span>
+
+                    </div>
+
+                    <TransactionFilters setFilter={setFilter} />
+
+                </div>
+
+                {/* Transaction List */}
+                <div
+                    className="
+                        bg-white
+                        rounded-3xl
+                        border border-[#D9E8E3]
+                        shadow-lg
+                        overflow-hidden
+                    "
+                >
+
+                    <div
+                        className="
+                            px-6
+                            py-4
+                            border-b
+                            border-[#D9E8E3]
+                            bg-[#F7FAF9]
+                        "
+                    >
+
+                        <h2 className="font-semibold text-lg text-slate-700">
+                            Transaction History
+                        </h2>
+
+                    </div>
+
+                    <div className="p-6">
+
+                        {loading ? (
+
+                            <Loader />
+
+                        ) : filteredTransactions.length > 0 ? (
+
+                            <TransactionList
+                                transactions={filteredTransactions}
+                            />
+
+                        ) : (
+
+                            <div className="text-center py-16">
+
+                                <div
+                                    className="
+                                        w-20 h-20
+                                        rounded-full
+                                        bg-[#EAF4F1]
+                                        flex
+                                        items-center
+                                        justify-center
+                                        mx-auto
+                                        mb-4
+                                    "
+                                >
+                                    💸
+                                </div>
+
+                                <h3 className="text-lg font-semibold text-slate-700">
+                                    No Transactions Found
+                                </h3>
+
+                                <p className="text-slate-500 mt-2">
+                                    Start tracking your finances by adding
+                                    your first transaction.
+                                </p>
+
+                                <Button
+                                    onClick={() => setOpenModal(true)}
+                                    className="mt-5"
+                                >
+                                    Add Transaction
+                                </Button>
+
+                            </div>
+
+                        )}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {/* Add Transaction Modal */}
             <Modal isOpen={openModal}>
 
-                <div className="flex justify-between items-center mb-4">
+                <div className="space-y-6">
 
-                    <h2 className="text-xl font-bold">
-                        Add Transaction
-                    </h2>
+                    <div className="flex justify-between items-center">
 
-                    <button
-                        onClick={() => setOpenModal(false)}
-                        className="text-red-500 text-lg"
-                    >
-                        ✕
-                    </button>
+                        <div>
+
+                            <h2 className="text-2xl font-bold text-[#2F6B5F]">
+                                Add Transaction
+                            </h2>
+
+                            <p className="text-sm text-slate-500">
+                                Record a new income or expense
+                            </p>
+
+                        </div>
+
+                        <button
+                            onClick={() => setOpenModal(false)}
+                            className="
+                                w-10 h-10
+                                rounded-full
+                                bg-red-50
+                                text-red-500
+                                hover:bg-red-100
+                                transition
+                            "
+                        >
+                            ✕
+                        </button>
+
+                    </div>
+
+                    <div className="border-t border-[#D9E8E3] pt-5">
+
+                        <TransactionForm
+                            onSubmit={handleCreateTransaction}
+                            wallets={wallets}
+                        />
+
+                    </div>
 
                 </div>
-
-                <TransactionForm
-                    onSubmit={handleCreateTransaction}
-                    wallets={wallets}
-                />
 
             </Modal>
 

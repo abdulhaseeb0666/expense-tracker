@@ -17,33 +17,133 @@ const BudgetForm = ({ onSubmit }) => {
     };
 
     return (
-        <form className="space-y-3" onSubmit={handleSubmit}>
-            <input
-                name="category"
-                placeholder="Category"
-                onChange={handleChange}
-                className="border p-2 w-full"
-            />
+        <form
+            className="space-y-5"
+            onSubmit={handleSubmit}
+        >
 
-            <input
-                name="amount"
-                placeholder="Budget Amount"
-                onChange={handleChange}
-                className="border p-2 w-full"
-            />
+            <div>
 
-            <select
-                name="period"
-                onChange={handleChange}
-                className="border p-2 w-full"
+                <label
+                    className="
+                        block
+                        text-sm
+                        font-medium
+                        text-slate-600
+                        mb-2
+                    "
+                >
+                    Category
+                </label>
+
+                <input
+                    name="category"
+                    placeholder="Food, Shopping, Travel..."
+                    onChange={handleChange}
+                    className="
+                        w-full
+                        px-4
+                        py-3
+                        rounded-xl
+                        border
+                        border-[#D9E8E3]
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-[#5E9C89]
+                    "
+                />
+
+            </div>
+
+            <div>
+
+                <label
+                    className="
+                        block
+                        text-sm
+                        font-medium
+                        text-slate-600
+                        mb-2
+                    "
+                >
+                    Budget Amount
+                </label>
+
+                <input
+                    name="amount"
+                    placeholder="Enter amount"
+                    onChange={handleChange}
+                    className="
+                        w-full
+                        px-4
+                        py-3
+                        rounded-xl
+                        border
+                        border-[#D9E8E3]
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-[#5E9C89]
+                    "
+                />
+
+            </div>
+
+            <div>
+
+                <label
+                    className="
+                        block
+                        text-sm
+                        font-medium
+                        text-slate-600
+                        mb-2
+                    "
+                >
+                    Budget Period
+                </label>
+
+                <select
+                    name="period"
+                    onChange={handleChange}
+                    className="
+                        w-full
+                        px-4
+                        py-3
+                        rounded-xl
+                        border
+                        border-[#D9E8E3]
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-[#5E9C89]
+                    "
+                >
+                    <option value="monthly">
+                        Monthly
+                    </option>
+
+                    <option value="weekly">
+                        Weekly
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                className="
+                    w-full
+                    py-3
+                    rounded-xl
+                    bg-[#2F6B5F]
+                    hover:bg-[#24564C]
+                    text-white
+                    font-semibold
+                    transition
+                "
             >
-                <option value="monthly">Monthly</option>
-                <option value="weekly">Weekly</option>
-            </select>
-
-            <button className="bg-black text-white p-2 w-full">
                 Create Budget
             </button>
+
         </form>
     );
 };

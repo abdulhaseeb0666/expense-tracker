@@ -1,5 +1,5 @@
 import formatCurrency from "../../utils/formatCurrency";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaWallet, FaRegTrashAlt  } from "react-icons/fa";
 
 const WalletCard = ({ wallet, onDelete }) => {
 
@@ -15,32 +15,79 @@ const WalletCard = ({ wallet, onDelete }) => {
     };
 
     return (
-        <div className="p-4 border rounded shadow flex justify-between items-center">
+        <div
+            className="
+                bg-white
+                border
+                border-[#D9E8E3]
+                rounded-3xl
+                p-6
+                shadow-sm
+                hover:shadow-lg
+                transition-all
+                duration-300
+            "
+        >
 
-            <div>
+            <div className="flex justify-between items-start">
 
-                <h3 className="font-bold">
-                    {wallet.name}
-                </h3>
+                <div>
 
-                <p className="text-sm text-gray-500">
-                    Balance
-                </p>
+                    <div
+                        className="
+                            w-14
+                            h-14
+                            rounded-2xl
+                            bg-[#EAF4F1]
+                            flex
+                            items-center
+                            justify-center
+                            mb-4
+                        "
+                    >
+                        <FaWallet
+                            size={24}
+                            className="text-[#2F6B5F]"
+                        />
+                    </div>
 
-                <h2 className="text-xl">
-                    {formatCurrency(wallet.balance)}
-                </h2>
+                    <h3 className="text-xl font-bold text-slate-800">
+                        {wallet.name}
+                    </h3>
 
-            </div>
+                    <p className="text-slate-500 mt-1">
+                        Current Balance
+                    </p>
 
-            <div>
+                </div>
 
                 <button
                     onClick={handleDelete}
-                    className="text-red-500 hover:text-red-700"
+                    className="
+                        p-2
+                        rounded-xl
+                        bg-red-50
+                        text-red-500
+                        hover:bg-red-100
+                        transition
+                    "
                 >
-                    <FaRegTrashAlt size={25} />
+                    <FaRegTrashAlt size={18} />
                 </button>
+
+            </div>
+
+            <div className="mt-6">
+
+                <h2
+                    className="
+                        text-3xl
+                        font-bold
+                        text-[#2F6B5F]
+                    "
+                >
+                    {formatCurrency(wallet.balance)}
+                </h2>
 
             </div>
 

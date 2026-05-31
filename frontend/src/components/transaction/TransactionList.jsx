@@ -2,10 +2,17 @@ import TransactionCard from "./TransactionCard";
 
 const TransactionList = ({ transactions = [] }) => {
     return (
-        <div className="space-y-3">
+        <div className="space-y-4">
+
             {transactions.map((t) => (
-                <TransactionCard key={t._id} transaction={t} />
+
+                <TransactionCard
+                    key={t._id}
+                    transaction={t}
+                />
+
             ))}
+
         </div>
     );
 };

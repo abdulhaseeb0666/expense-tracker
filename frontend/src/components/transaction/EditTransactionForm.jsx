@@ -44,96 +44,151 @@ const EditTransactionForm = ({
     return (
         <form
             onSubmit={handleSubmit}
-            className="space-y-4"
+            className="space-y-5"
         >
 
-            {/* Wallet */}
-            <select
-                name="wallet"
-                value={formData.wallet}
-                onChange={handleChange}
-                className="w-full border p-3 rounded text-gray-500"
-                disabled
-            >
+            <div>
+                <label className="block mb-2 text-sm font-medium text-slate-600">
+                    Wallet
+                </label>
 
-                <option value="">
-                    Select Wallet
-                </option>
-
-                {wallets.map((wallet) => (
-                    <option
-                        key={wallet._id}
-                        value={wallet._id}
-                    >
-                        {wallet.name}
+                <select
+                    name="wallet"
+                    value={formData.wallet}
+                    onChange={handleChange}
+                    required
+                    className="
+                        w-full
+                        px-4
+                        py-3
+                        rounded-xl
+                        border
+                        border-[#D9E8E3]
+                        bg-white
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-[#5E9C89]
+                        disabled
+                            text-gray-400
+                    "
+                >
+                    <option value="">
+                        Select Wallet
                     </option>
-                ))}
 
-            </select>
+                    {wallets.map((wallet) => (
+                        <option
+                            key={wallet._id}
+                            value={wallet._id}
+                            
+                        >
+                            {wallet.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-            {/* Type */}
-            <select
-                name="type"
-                value={formData.type}
-                onChange={handleChange}
-                className="w-full border p-3 rounded"
-            >
-
-                <option value="income">
-                    Income
-                </option>
-
-                <option value="expense">
-                    Expense
-                </option>
-
-            </select>
-
-            {/* Category */}
             <input
-                type="text"
-                name="category"
-                placeholder="Category"
-                value={formData.category}
-                onChange={handleChange}
-                className="w-full border p-3 rounded"
-            />
-
-            {/* Title */}
-            <input
-                type="text"
                 name="title"
-                placeholder="Title"
+                placeholder="Transaction Title"
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full border p-3 rounded"
+                className="
+                    w-full
+                    px-4
+                    py-3
+                    rounded-xl
+                    border
+                    border-[#D9E8E3]
+                "
             />
 
-            {/* Amount */}
             <input
-                type="number"
                 name="amount"
+                type="number"
                 placeholder="Amount"
                 value={formData.amount}
                 onChange={handleChange}
-                className="w-full border p-3 rounded"
+                className="
+                    w-full
+                    px-4
+                    py-3
+                    rounded-xl
+                    border
+                    border-[#D9E8E3]
+                "
             />
 
-            {/* Note */}
+            <div className="grid grid-cols-2 gap-4">
+
+                <select
+                    name="type"
+                    value={formData.type}
+                    onChange={handleChange}
+                    className="
+                        px-4
+                        py-3
+                        rounded-xl
+                        border
+                        border-[#D9E8E3]
+                    "
+                >
+                    <option value="expense">
+                        Expense
+                    </option>
+
+                    <option value="income">
+                        Income
+                    </option>
+
+                </select>
+
+                <input
+                    name="category"
+                    placeholder="Category"
+                    value={formData.category}
+                    onChange={handleChange}
+                    className="
+                        px-4
+                        py-3
+                        rounded-xl
+                        border
+                        border-[#D9E8E3]
+                    "
+                />
+
+            </div>
+
             <textarea
                 name="note"
-                placeholder="Note"
+                placeholder="Additional Notes..."
                 value={formData.note}
                 onChange={handleChange}
-                className="w-full border p-3 rounded"
                 rows={4}
+                className="
+                    w-full
+                    px-4
+                    py-3
+                    rounded-xl
+                    border
+                    border-[#D9E8E3]
+                "
             />
 
             <button
                 type="submit"
-                className="w-full bg-black text-white p-3 rounded"
+                className="
+                    w-full
+                    py-3
+                    rounded-xl
+                    bg-[#2F6B5F]
+                    hover:bg-[#24564C]
+                    text-white
+                    font-semibold
+                    transition
+                "
             >
-                Update Transaction
+                Save Changes
             </button>
 
         </form>

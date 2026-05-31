@@ -17,34 +17,52 @@ const AuthForm = ({ type = "login", onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-4">
+
             {type === "register" && (
-                <input
-                    name="name"
-                    placeholder="Name"
-                    onChange={handleChange}
-                    className="border p-2 w-full"
-                />
+                <div>
+                    <input
+                        name="name"
+                        placeholder="Full Name"
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg 
+                                   focus:outline-none focus:ring-2 focus:ring-green-500"
+                    />
+                </div>
             )}
 
-            <input
-                name="email"
-                placeholder="Email"
-                onChange={handleChange}
-                className="border p-2 w-full"
-            />
+            <div>
+                <input
+                    name="email"
+                    placeholder="Email address"
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg 
+                               focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+            </div>
 
-            <input
-                name="password"
-                type="password"
-                placeholder="Password"
-                onChange={handleChange}
-                className="border p-2 w-full"
-            />
+            <div>
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg 
+                               focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+            </div>
 
-            <button className="bg-black text-white p-2 w-full">
-                {type === "login" ? "Login" : "Register"}
+            <button
+                className="w-full py-3 rounded-lg bg-green-600 text-white font-medium
+                           hover:bg-green-700 transition shadow-md hover:shadow-lg"
+            >
+                {type === "login" ? "Sign In" : "Create Account"}
             </button>
+
+            <p className="text-xs text-center text-gray-400 mt-4">
+                By continuing you agree to secure encrypted storage of your financial data.
+            </p>
+
         </form>
     );
 };

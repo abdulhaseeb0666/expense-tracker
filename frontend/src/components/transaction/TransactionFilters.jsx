@@ -1,9 +1,58 @@
 const TransactionFilters = ({ setFilter }) => {
     return (
-        <div className="flex gap-2">
-            <button onClick={() => setFilter("all")}>All</button>
-            <button onClick={() => setFilter("income")}>Income</button>
-            <button onClick={() => setFilter("expense")}>Expense</button>
+        <div
+            className="
+                flex
+                gap-3
+                bg-[#F7FAF9]
+                p-2
+                rounded-2xl
+                border
+                border-[#D9E8E3]
+                w-fit
+            "
+        >
+
+            <button
+                onClick={() => setFilter("all")}
+                className="
+                    px-5
+                    py-2
+                    rounded-xl
+                    bg-[#2F6B5F]
+                    text-white
+                    font-medium
+                "
+            >
+                All
+            </button>
+
+            <button
+                onClick={() => setFilter("income")}
+                className="
+                    px-5
+                    py-2
+                    rounded-xl
+                    text-green-700
+                    hover:bg-green-50
+                "
+            >
+                Income
+            </button>
+
+            <button
+                onClick={() => setFilter("expense")}
+                className="
+                    px-5
+                    py-2
+                    rounded-xl
+                    text-red-700
+                    hover:bg-red-50
+                "
+            >
+                Expense
+            </button>
+
         </div>
     );
 };

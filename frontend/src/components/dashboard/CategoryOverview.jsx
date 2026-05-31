@@ -12,16 +12,12 @@ import {
 import formatCurrency from "../../utils/formatCurrency";
 
 const COLORS = [
-    "#3b82f6",
-    "#10b981",
-    "#f59e0b",
-    "#ef4444",
-    "#8b5cf6",
-    "#ec4899",
-    "#06b6d4",
-    "#84cc16",
-    "#f97316",
-    "#14b8a6"
+    "#7dd3fc", // light blue
+    "#86efac", // light green
+    "#ef9a9a", // light red
+    "#fda4c0", // light pink
+    "#c4b5fd", // light purple
+    "#fcd34d", // light yellow
 ];
 
 const CategoryOverview = ({ data = [] }) => {
@@ -32,18 +28,16 @@ const CategoryOverview = ({ data = [] }) => {
     }));
 
     return (
-        <div className="bg-white p-5 rounded shadow">
+        <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6 hover:shadow-xl transition-all">
 
-            <div className="mb-4">
-
-                <h2 className="text-xl font-bold">
-                    Category Overview
+            <div className="mb-6">
+                <h2 className="text-2xl font-bold text-green-900">
+                    Spending Categories
                 </h2>
 
-                <p className="text-sm text-gray-500">
-                    Expense distribution by category
+                <p className="text-green-600 text-sm">
+                    Breakdown of expenses by category
                 </p>
-
             </div>
 
             <div className="h-80">
@@ -58,7 +52,9 @@ const CategoryOverview = ({ data = [] }) => {
                             nameKey="category"
                             cx="50%"
                             cy="50%"
-                            outerRadius={80}
+                            innerRadius={70}
+                            outerRadius={120}
+                            paddingAngle={3}
                             label={({ category, percent }) =>
                                 `${category} (${(percent * 100).toFixed(0)}%)`
                             }
@@ -78,9 +74,12 @@ const CategoryOverview = ({ data = [] }) => {
                         </Pie>
 
                         <Tooltip
-                            formatter={(value) =>
-                                formatCurrency(value)
-                            }
+                            contentStyle={{
+                                borderRadius: "16px",
+                                border: "none",
+                                boxShadow: "0 8px 30px rgba(0,0,0,.1)"
+                            }}
+                            formatter={(value) => formatCurrency(value)}
                         />
 
                         <Legend />

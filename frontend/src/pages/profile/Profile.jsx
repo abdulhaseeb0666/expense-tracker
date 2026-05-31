@@ -144,124 +144,277 @@ const Profile = () => {
     return (
         <DashboardLayout>
 
-            <div className="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+            <div className="max-w-5xl mx-auto">
 
-                <h1 className="text-3xl font-bold mb-6">
-                    Profile
-                </h1>
+                {/* Header */}
+                <div className="mb-8">
 
-                <div className="flex justify-center mb-6">
+                    <h1 className="text-4xl font-bold text-[#2F6B5F]">
+                        My Profile
+                    </h1>
 
-                    <img
-                        src={
-                            user?.avatar
-                                ? `http://localhost:3000/${user.avatar}`
-                                : "/default-avatar.png"
-                        }
-                        alt="avatar"
-                        className="w-28 h-28 rounded-full object-cover border"
-                    />
+                    <p className="text-slate-500 mt-2">
+                        Manage your personal information and account preferences
+                    </p>
 
                 </div>
 
-                <form
-                    onSubmit={handleSubmit}
-                    className="space-y-4"
-                >
+                <div className="grid lg:grid-cols-3 gap-8">
 
-                    <div>
-
-                        <label className="block mb-1 font-medium">
-                            Name
-                        </label>
-
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            className="w-full border p-3 rounded"
-                        />
-
-                    </div>
-
-                    <div>
-
-                        <label className="block mb-1 font-medium">
-                            Email
-                        </label>
-
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className="w-full border p-3 rounded"
-                        />
-
-                    </div>
-
-                    <div>
-
-                        <label className="block mb-1 font-medium">
-                            Currency
-                        </label>
-
-                        <select
-                            name="currency"
-                            value={formData.currency}
-                            onChange={handleChange}
-                            className="w-full border p-3 rounded"
-                        >
-                            <option value="PKR">PKR</option>
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                        </select>
-
-                    </div>
-
-                    <div>
-
-                        <label className="block mb-1 font-medium">
-                            New Password
-                        </label>
-
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            placeholder="Leave empty if unchanged"
-                            className="w-full border p-3 rounded"
-                        />
-
-                    </div>
-
-                    <div>
-
-                        <label className="block mb-1 font-medium">
-                            Avatar
-                        </label>
-
-                        <input
-                            type="file"
-                            name="avatar"
-                            accept="image/*"
-                            onChange={handleChange}
-                            className="w-full border p-3 rounded"
-                        />
-
-                    </div>
-
-                    <Button
-                        type="submit"
-                        className="w-full"
+                    {/* Profile Card */}
+                    <div
+                        className="
+                            bg-white
+                            rounded-3xl
+                            border
+                            border-[#D9E8E3]
+                            p-8
+                            shadow-sm
+                        "
                     >
-                        Update Profile
-                    </Button>
 
-                </form>
+                        <div className="flex flex-col items-center">
+
+                            <div className="relative">
+
+                                <img
+                                    src={
+                                        user?.avatar
+                                            ? `http://localhost:3000/${user.avatar}`
+                                            : "/default-avatar.png"
+                                    }
+                                    alt="avatar"
+                                    className="
+                                        w-36
+                                        h-36
+                                        rounded-full
+                                        object-cover
+                                        border-4
+                                        border-[#EAF4F1]
+                                        shadow-md
+                                    "
+                                />
+
+                                <div
+                                    className="
+                                        absolute
+                                        bottom-1
+                                        right-1
+                                        w-5
+                                        h-5
+                                        bg-green-500
+                                        rounded-full
+                                        border-2
+                                        border-white
+                                    "
+                                />
+
+                            </div>
+
+                            <h2 className="mt-5 text-2xl font-bold text-slate-800">
+                                {user?.name}
+                            </h2>
+
+                            <p className="text-slate-500">
+                                {user?.email}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    {/* Settings Form */}
+                    <div
+                        className="
+                            lg:col-span-2
+                            bg-white
+                            rounded-3xl
+                            border
+                            border-[#D9E8E3]
+                            p-8
+                            shadow-sm
+                        "
+                    >
+
+                        <div className="mb-8">
+
+                            <h2 className="text-2xl font-bold text-slate-800">
+                                Account Settings
+                            </h2>
+
+                            <p className="text-slate-500 mt-1">
+                                Update your profile details and preferences
+                            </p>
+
+                        </div>
+
+                        <form
+                            onSubmit={handleSubmit}
+                            className="space-y-6"
+                        >
+
+                            {/* Name */}
+
+                            <div>
+
+                                <label
+                                    className="
+                                        block
+                                        text-sm
+                                        font-medium
+                                        text-slate-600
+                                        mb-2
+                                    "
+                                >
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    className="
+                                        w-full
+                                        px-4
+                                        py-3
+                                        rounded-xl
+                                        border
+                                        border-[#D9E8E3]
+                                        focus:outline-none
+                                        focus:ring-2
+                                        focus:ring-[#5E9C89]
+                                    "
+                                />
+
+                            </div>
+
+                            {/* Email */}
+
+                            <div>
+
+                                <label
+                                    className="
+                                        block
+                                        text-sm
+                                        font-medium
+                                        text-slate-600
+                                        mb-2
+                                    "
+                                >
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="
+                                        w-full
+                                        px-4
+                                        py-3
+                                        rounded-xl
+                                        border
+                                        border-[#D9E8E3]
+                                        focus:outline-none
+                                        focus:ring-2
+                                        focus:ring-[#5E9C89]
+                                    "
+                                />
+
+                            </div>
+
+                            {/* Password */}
+
+                            <div>
+
+                                <label
+                                    className="
+                                        block
+                                        text-sm
+                                        font-medium
+                                        text-slate-600
+                                        mb-2
+                                    "
+                                >
+                                    New Password
+                                </label>
+
+                                <input
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    placeholder="Leave blank to keep current password"
+                                    className="
+                                        w-full
+                                        px-4
+                                        py-3
+                                        rounded-xl
+                                        border
+                                        border-[#D9E8E3]
+                                        focus:outline-none
+                                        focus:ring-2
+                                        focus:ring-[#5E9C89]
+                                    "
+                                />
+
+                            </div>
+
+                            {/* Avatar Upload */}
+
+                            <div>
+
+                                <label
+                                    className="
+                                        block
+                                        text-sm
+                                        font-medium
+                                        text-slate-600
+                                        mb-2
+                                    "
+                                >
+                                    Profile Picture
+                                </label>
+
+                                <input
+                                    type="file"
+                                    name="avatar"
+                                    accept="image/*"
+                                    onChange={handleChange}
+                                    className="
+                                        w-full
+                                        p-3
+                                        rounded-xl
+                                        border
+                                        border-dashed
+                                        border-[#A7CDBF]
+                                        bg-[#F7FBFA]
+                                        cursor-pointer
+                                    "
+                                />
+
+                            </div>
+
+                            {/* Save Button */}
+
+                            <Button
+                                type="submit"
+                                className="
+                                    w-full
+                                    py-4
+                                    text-lg
+                                "
+                            >
+                                Save Changes
+                            </Button>
+
+                        </form>
+
+                    </div>
+
+                </div>
 
             </div>
 

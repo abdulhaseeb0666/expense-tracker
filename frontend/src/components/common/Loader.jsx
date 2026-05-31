@@ -1,7 +1,32 @@
 const Loader = () => {
     return (
-        <div className="flex justify-center items-center p-10">
-            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-black"></div>
+        <div className="flex justify-center items-center py-20">
+
+            <div className="relative">
+
+                <div
+                    className="
+                        h-14 w-14
+                        rounded-full
+                        border-4
+                        border-[#D9E8E3]
+                    "
+                />
+
+                <div
+                    className="
+                        absolute inset-0
+                        h-14 w-14
+                        rounded-full
+                        border-4
+                        border-transparent
+                        border-t-[#2F6B5F]
+                        animate-spin
+                    "
+                />
+
+            </div>
+
         </div>
     );
 };

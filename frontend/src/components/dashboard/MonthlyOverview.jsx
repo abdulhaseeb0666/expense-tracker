@@ -11,12 +11,12 @@ import {
 } from "recharts";
 
 const COLORS = [
-    "#7dd3fc", // light blue
-    "#86efac", // light green
-    "#ef9a9a", // light red
-    "#fda4c0", // light pink
-    "#c4b5fd", // light purple
-    "#fcd34d", // light yellow
+    "#D6F5E3",
+    "#E0F2FE",
+    "#FEF3C7",
+    "#FCE7F3",
+    "#EDE9FE",
+    "#DCFCE7"
 ];
 
 import formatCurrency from "../../utils/formatCurrency";
@@ -52,18 +52,16 @@ const MonthlyOverview = ({ data = [] }) => {
 
 
     return (
-        <div className="bg-white p-5 rounded shadow">
+        <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6">
 
-            <div className="mb-4">
-
-                <h2 className="text-xl font-bold">
-                    Monthly Overview
+            <div className="mb-6">
+                <h2 className="text-2xl font-bold text-green-900">
+                    Monthly Financial Flow
                 </h2>
 
-                <p className="text-sm text-gray-500">
-                    Monthly income and expense analytics
+                <p className="text-green-600">
+                    Income, expenses and profit trends
                 </p>
-
             </div>
 
             <div className="h-80">
@@ -82,39 +80,44 @@ const MonthlyOverview = ({ data = [] }) => {
                             />
                         ))}
 
-                        <CartesianGrid strokeDasharray="2 3" />
+                        <CartesianGrid strokeDasharray="5 5" stroke="#E5F4EA" />
 
-                        <XAxis dataKey="month" />
+                        <XAxis dataKey="month" tick={{ fill: "#2F855A" }} />
 
-                        <YAxis />
+                        <YAxis  tick={{ fill: "#2F855A" }} />
 
-                        <Legend />
+                        <Legend
+                            wrapperStyle={{
+                                paddingTop: 15
+                            }}
+                        />
 
-                        <Tooltip 
-                            formatter={(value) =>
-                                formatCurrency(value)
-                            }
+                        <Tooltip
+                            contentStyle={{
+                                backgroundColor: "#fff",
+                                borderRadius: "16px",
+                                border: "none",
+                                boxShadow: "0 8px 30px rgba(0,0,0,.1)"
+                            }}
+                            formatter={(value) => formatCurrency(value)}
                         />
                             
                         <Bar
                             dataKey="income"
-                            name="Income"
-                            radius={[6, 6, 0, 0]}
-                            fill="#1eb2a6"
+                            fill="#38A169"
+                            radius={[10,10,0,0]}
                         />
 
                         <Bar
                             dataKey="expense"
-                            name="Expense"
-                            radius={[6, 6, 0, 0]}
-                            fill="#f87171"
+                            fill="#E53E3E"
+                            radius={[10,10,0,0]}
                         />
 
                         <Bar
                             dataKey="profit"
-                            name="Profit"
-                            radius={[6, 6, 0, 0]}
-                            fill="#fbbf24"
+                            fill="#D69E2E"
+                            radius={[10,10,0,0]}
                         />
 
                     </BarChart>

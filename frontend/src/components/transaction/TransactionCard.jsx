@@ -59,30 +59,106 @@ const TransactionCard = ({ transaction }) => {
     };
 
     return (
-        <div className="p-3 border rounded flex justify-between">
-            <div>
-                <h3>{transaction.title}</h3>
-                <p className="text-sm text-gray-500">
-                    {transaction.category}
-                </p>
-            </div>
+        <div
+            className="
+                bg-white
+                border
+                border-[#D9E8E3]
+                rounded-2xl
+                p-5
+                shadow-sm
+                hover:shadow-md
+                transition
+            "
+        >
 
-            <div className={`${transaction.type === "income" ? "text-green-500" : "text-red-500"} font-bold flex items-center gap-3`}>
-                {formatCurrency(transaction.amount)}
+            <div className="flex justify-between items-center">
 
-                <button
-                    onClick={() => setIsEditModalOpen(true)}
-                    className="text-blue-500 hover:text-blue-700"
-                >
-                    <FaEdit />
-                </button>
+                <div>
 
-                <button
-                    onClick={handleDelete}
-                    className="text-red-500 hover:text-red-700"
-                >
-                    <FaRegTrashAlt size={25} />
-                </button>
+                    <h3 className="font-semibold text-lg text-slate-800">
+                        {transaction.title}
+                    </h3>
+
+                    <div className="flex gap-2 mt-2">
+
+                        <span
+                            className="
+                                px-3
+                                py-1
+                                rounded-full
+                                bg-[#EAF4F1]
+                                text-[#2F6B5F]
+                                text-xs
+                            "
+                        >
+                            {transaction.category}
+                        </span>
+
+                        <span
+                            className={`
+                                px-3 py-1 rounded-full text-xs
+                                ${
+                                    transaction.type === "income"
+                                        ? "bg-green-100 text-green-700"
+                                        : "bg-red-100 text-red-700"
+                                }
+                            `}
+                        >
+                            {transaction.type}
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div className="text-right">
+
+                    <h2
+                        className={`
+                            text-xl
+                            font-bold
+                            ${
+                                transaction.type === "income"
+                                    ? "text-green-600"
+                                    : "text-red-500"
+                            }
+                        `}
+                    >
+                        {formatCurrency(transaction.amount)}
+                    </h2>
+
+                    <div className="flex justify-end gap-3 mt-3">
+
+                        <button
+                            onClick={() => setIsEditModalOpen(true)}
+                            className="
+                                p-2
+                                rounded-lg
+                                bg-blue-50
+                                text-blue-600
+                                hover:bg-blue-100
+                            "
+                        >
+                            <FaEdit />
+                        </button>
+
+                        <button
+                            onClick={handleDelete}
+                            className="
+                                p-2
+                                rounded-lg
+                                bg-red-50
+                                text-red-500
+                                hover:bg-red-100
+                            "
+                        >
+                            <FaRegTrashAlt />
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -108,8 +184,6 @@ const TransactionCard = ({ transaction }) => {
                     onSubmit={handleEdit}
                 />
             </Modal>
-
-
         </div>
     );
 };

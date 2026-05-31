@@ -50,14 +50,11 @@ const Dashboard = () => {
     return (
         <DashboardLayout>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
 
-                {/* Top Statistics */}
-                <div className="flex flex-col gap-6">
-
-                    <BalanceCard
-                        balance={summary?.balance || 0}
-                    />
+                {/* Summary */}
+                <div className="grid gap-6">
+                    <BalanceCard balance={summary?.balance || 0} />
 
                     <SummaryCards
                         data={{
@@ -66,21 +63,18 @@ const Dashboard = () => {
                             balance: summary?.balance || 0
                         }}
                     />
-
                 </div>
 
+                {/* Charts */}
                 <MonthlyOverview data={monthlyStats} />
 
-                {/* Charts */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <WalletOverview data={walletStats} />
                     <CategoryOverview data={categoryStats} />
                 </div>
 
-                {/* Recent Transactions */}
-                <RecentTransactions
-                    transactions={transactions}
-                />
+                {/* Transactions */}
+                <RecentTransactions transactions={transactions} />
 
             </div>
 

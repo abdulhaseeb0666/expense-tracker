@@ -27,36 +27,60 @@ const TransactionForm = ({ onSubmit ,  wallets = [] }) => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="space-y-3"
+            className="space-y-5"
         >
 
-            <select
-                name="wallet"
-                value={form.wallet}
-                onChange={handleChange}
-                className="border p-2 w-full"
-                required
-            >
-                <option value="">
-                    Select Wallet
-                </option>
+            <div>
+                <label className="block mb-2 text-sm font-medium text-slate-600">
+                    Wallet
+                </label>
 
-                {wallets.map((wallet) => (
-                    <option
-                        key={wallet._id}
-                        value={wallet._id}
-                    >
-                        {wallet.name}
+                <select
+                    name="wallet"
+                    value={form.wallet}
+                    onChange={handleChange}
+                    required
+                    className="
+                        w-full
+                        px-4
+                        py-3
+                        rounded-xl
+                        border
+                        border-[#D9E8E3]
+                        bg-white
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-[#5E9C89]
+                    "
+                >
+                    <option value="">
+                        Select Wallet
                     </option>
-                ))}
-            </select>
+
+                    {wallets.map((wallet) => (
+                        <option
+                            key={wallet._id}
+                            value={wallet._id}
+                        >
+                            {wallet.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
             <input
                 name="title"
-                placeholder="Title"
+                placeholder="Transaction Title"
                 value={form.title}
                 onChange={handleChange}
-                className="border p-2 w-full"
+                className="
+                    w-full
+                    px-4
+                    py-3
+                    rounded-xl
+                    border
+                    border-[#D9E8E3]
+                "
             />
 
             <input
@@ -65,41 +89,84 @@ const TransactionForm = ({ onSubmit ,  wallets = [] }) => {
                 placeholder="Amount"
                 value={form.amount}
                 onChange={handleChange}
-                className="border p-2 w-full"
+                className="
+                    w-full
+                    px-4
+                    py-3
+                    rounded-xl
+                    border
+                    border-[#D9E8E3]
+                "
             />
 
-            <select
-                name="type"
-                value={form.type}
-                onChange={handleChange}
-                className="border p-2 w-full"
-            >
-                <option value="expense">
-                    Expense
-                </option>
+            <div className="grid grid-cols-2 gap-4">
 
-                <option value="income">
-                    Income
-                </option>
-            </select>
+                <select
+                    name="type"
+                    value={form.type}
+                    onChange={handleChange}
+                    className="
+                        px-4
+                        py-3
+                        rounded-xl
+                        border
+                        border-[#D9E8E3]
+                    "
+                >
+                    <option value="expense">
+                        Expense
+                    </option>
 
-            <input
-                name="category"
-                placeholder="Category"
-                value={form.category}
-                onChange={handleChange}
-                className="border p-2 w-full"
-            />
+                    <option value="income">
+                        Income
+                    </option>
+
+                </select>
+
+                <input
+                    name="category"
+                    placeholder="Category"
+                    value={form.category}
+                    onChange={handleChange}
+                    className="
+                        px-4
+                        py-3
+                        rounded-xl
+                        border
+                        border-[#D9E8E3]
+                    "
+                />
+
+            </div>
 
             <textarea
                 name="note"
-                placeholder="Note"
+                placeholder="Additional Notes..."
                 value={form.note}
                 onChange={handleChange}
-                className="border p-2 w-full"
+                rows={4}
+                className="
+                    w-full
+                    px-4
+                    py-3
+                    rounded-xl
+                    border
+                    border-[#D9E8E3]
+                "
             />
 
-            <button className="bg-black text-white p-2 w-full rounded">
+            <button
+                className="
+                    w-full
+                    py-3
+                    rounded-xl
+                    bg-[#2F6B5F]
+                    hover:bg-[#24564C]
+                    text-white
+                    font-semibold
+                    transition
+                "
+            >
                 Add Transaction
             </button>
 

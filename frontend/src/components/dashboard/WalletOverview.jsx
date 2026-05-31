@@ -10,13 +10,13 @@ import {
     ReferenceArea
 } from "recharts";
 
-const COLORS = [
-    "#7dd3fc", // light blue
-    "#86efac", // light green
-    "#ef9a9a", // light red
-    "#fda4c0", // light pink
-    "#c4b5fd", // light purple
-    "#fcd34d", // light yellow
+const WALLET_COLORS = [
+    "#D6F5E3",
+    "#E0F2FE",
+    "#FEF3C7",
+    "#FCE7F3",
+    "#EDE9FE",
+    "#DCFCE7"
 ];
 
 import formatCurrency from "../../utils/formatCurrency";
@@ -31,15 +31,15 @@ const WalletOverview = ({ data = [] }) => {
     }));
 
     return (
-        <div className="bg-white p-5 rounded shadow">
+        <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6">
 
-            <div className="mb-4">
-                <h2 className="text-xl font-bold">
-                    Wallet Overview
+            <div className="mb-6">
+                <h2 className="text-2xl font-bold text-green-900">
+                    Wallet Performance
                 </h2>
 
-                <p className="text-sm text-gray-500">
-                    Income, expense and balance for each wallet
+                <p className="text-green-600">
+                    Compare balances across wallets
                 </p>
             </div>
 
@@ -54,8 +54,12 @@ const WalletOverview = ({ data = [] }) => {
                                 key={wallet.wallet}
                                 x1={wallet.wallet}
                                 x2={wallet.wallet}
-                                fill={COLORS[index % COLORS.length]}
-                                fillOpacity={0.3}
+                                fill={
+                                    WALLET_COLORS[
+                                        index % WALLET_COLORS.length
+                                    ]
+                                }
+                                fillOpacity={0.7}
                             />
                         ))}
 
@@ -68,30 +72,31 @@ const WalletOverview = ({ data = [] }) => {
                         <Legend />
 
                         <Tooltip
-                            formatter={(value) =>
-                                formatCurrency(value)
-                            }
+                            contentStyle={{
+                                borderRadius: "16px",
+                                border: "none",
+                                backgroundColor: "#ffffff",
+                                boxShadow: "0 8px 25px rgba(0,0,0,.15)"
+                            }}
+                            formatter={(value) => formatCurrency(value)}
                         />
 
                         <Bar
                             dataKey="income"
-                            name="Income"
-                            fill="#10b981"
-                            radius={[6, 6, 0, 0]}
+                            fill="#38A169"
+                            radius={[10,10,0,0]}
                         />
 
                         <Bar
                             dataKey="expense"
-                            name="Expense"
-                            fill="#ef4444"
-                            radius={[6, 6, 0, 0]}
+                            fill="#E53E3E"
+                            radius={[10,10,0,0]}
                         />
 
                         <Bar
                             dataKey="balance"
-                            name="Balance"
-                            fill="#f59e0b"
-                            radius={[6, 6, 0, 0]}
+                            fill="#D69E2E"
+                            radius={[10,10,0,0]}
                         />
 
                     </BarChart>
