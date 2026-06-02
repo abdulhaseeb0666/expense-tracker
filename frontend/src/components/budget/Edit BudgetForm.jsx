@@ -1,27 +1,45 @@
 import { useState } from "react";
 import {CATEGORIES} from "../../utils/constants";
 
-const BudgetForm = ({ onSubmit }) => {
-    const [form, setForm] = useState({
-        category: "",
-        amount: "",
-        period: "monthly"
+const EditBudgetForm = ({
+    budget,
+    onSubmit
+}) => {
+
+    const [formData, setFormData] = useState({
+        category: budget?.category || "",
+        amount: budget?.amount || "",
+        period: budget?.period || "monthly"
     });
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+
     };
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
-        onSubmit(form);
+
+        onSubmit({
+            ...formData,
+            amount: Number(formData.amount)
+        });
+
     };
 
     return (
+
         <form
-            className="space-y-5"
             onSubmit={handleSubmit}
+            className="space-y-5"
         >
+
+            {/* Category */}
 
             <div>
 
@@ -39,28 +57,38 @@ const BudgetForm = ({ onSubmit }) => {
 
                 <select
                     name="category"
+                    value={formData.category}
                     onChange={handleChange}
                     className="
                         w-full
-                        px-4
+                        px-4                        
                         py-3
                         rounded-xl
                         border
-                        border-[#D9E8E3]
-                        focus:outline-none
-                        focus:ring-2
+                        border-[#D9E8E3]                        
+                        focus:outline-none                        
+                        focus:ring-2                        
                         focus:ring-[#5E9C89]
                     "
+                    required
                 >
-                    <option value="">Select category</option>
 
                     {CATEGORIES.map((category) => (
-                        <option key={category}>{category}</option>
+
+                        <option
+                            key={category}
+                            value={category}
+                        >
+                            {category}
+                        </option>                        
+
                     ))}
 
                 </select>
 
             </div>
+
+            {/* Amount */}
 
             <div>
 
@@ -77,9 +105,11 @@ const BudgetForm = ({ onSubmit }) => {
                 </label>
 
                 <input
+                    type="number"
                     name="amount"
-                    placeholder="Enter amount"
+                    value={formData.amount}
                     onChange={handleChange}
+                    placeholder="Enter budget amount"
                     className="
                         w-full
                         px-4
@@ -91,9 +121,12 @@ const BudgetForm = ({ onSubmit }) => {
                         focus:ring-2
                         focus:ring-[#5E9C89]
                     "
+                    required
                 />
 
             </div>
+
+            {/* Period */}
 
             <div>
 
@@ -111,6 +144,7 @@ const BudgetForm = ({ onSubmit }) => {
 
                 <select
                     name="period"
+                    value={formData.period}
                     onChange={handleChange}
                     className="
                         w-full
@@ -136,7 +170,10 @@ const BudgetForm = ({ onSubmit }) => {
 
             </div>
 
+            {/* Submit Button */}
+
             <button
+                type="submit"
                 className="
                     w-full
                     py-3
@@ -148,11 +185,12 @@ const BudgetForm = ({ onSubmit }) => {
                     transition
                 "
             >
-                Create Budget
+                Update Budget
             </button>
 
         </form>
+
     );
 };
 
-export default BudgetForm;
+export default EditBudgetForm;

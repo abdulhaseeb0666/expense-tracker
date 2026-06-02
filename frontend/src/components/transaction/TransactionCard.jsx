@@ -53,6 +53,10 @@ const TransactionCard = ({ transaction }) => {
             setIsEditModalOpen(false);
             toast.success("Transaction updated successfully");
 
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+            
         } catch (error) {
             toast.error(error.response.data.message);
         }

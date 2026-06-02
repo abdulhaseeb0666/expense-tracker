@@ -1,8 +1,15 @@
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt , FaEdit} from "react-icons/fa";
 import useBudgets from "../../hooks/useBudget";
+import { toast } from "react-toastify";
+import EditBudgetForm from "./Edit BudgetForm";
+import Modal from "../common/Modal";
+import Loader from "../../components/common/Loader";
+import { useState , useEffect } from "react";
+
 const BudgetCard = ({ budget }) => {
 
-    const { removeBudget } = useBudgets();
+    const { removeBudget , editBudget } = useBudgets();
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     const handleDelete = async () => {
 
@@ -15,6 +22,37 @@ const BudgetCard = ({ budget }) => {
             window.location.reload();
         }
     };
+
+    const handleEdit = async (formData) => {
+         try {
+
+            await editBudget(
+                budget._id,
+                {
+                    category: formData.category,
+                    amount: Number(formData.amount),
+                    period: formData.period
+                }
+            );
+
+            toast.success("Budget updated successfully");
+            setIsEditModalOpen(false);
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+            
+        } catch (error) {
+
+            console.log(error.response?.data);
+
+            toast.error(
+                error.response?.data?.message ||
+                "Failed to update budget"
+            );
+
+        }
+    }
 
     return (
         <div
@@ -67,18 +105,33 @@ const BudgetCard = ({ budget }) => {
 
                 </div>
 
-                <button
-                    onClick={handleDelete}
-                    className="
-                        p-2
-                        rounded-xl
-                        bg-red-50
-                        text-red-500
-                        hover:bg-red-100
-                    "
-                >
-                    <FaRegTrashAlt />
-                </button>
+                <div className="flex gap-2">
+                    <button
+                        onClick={() => setIsEditModalOpen(true)}
+                        className="
+                            p-2
+                            rounded-xl
+                            bg-red-50
+                            text-red-500
+                            hover:bg-red-100
+                        "
+                    >
+                        <FaEdit />
+                    </button>
+
+                    <button
+                        onClick={handleDelete}
+                        className="
+                            p-2
+                            rounded-xl
+                            bg-red-50
+                            text-red-500
+                            hover:bg-red-100
+                        "
+                    >
+                        <FaRegTrashAlt />
+                    </button>
+                </div>        
 
             </div>
 
@@ -169,6 +222,30 @@ const BudgetCard = ({ budget }) => {
                 </div>
 
             )}
+
+            <Modal isOpen={isEditModalOpen}>
+
+                <div className="flex justify-between items-center mb-6">
+
+                    <h2 className="text-2xl font-bold text-[#2F6B5F]">
+                        Edit Budget
+                    </h2>
+
+                    <button
+                        onClick={() => setIsEditModalOpen(false)}
+                        className="text-red-500"
+                    >
+                        ✕
+                    </button>
+
+                </div>
+
+                <EditBudgetForm
+                    budget={budget}
+                    onSubmit={handleEdit}
+                />
+
+            </Modal>
 
         </div>
     );

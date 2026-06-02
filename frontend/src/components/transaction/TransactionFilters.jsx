@@ -16,12 +16,10 @@ const TransactionFilters = ({ setFilter }) => {
             <button
                 onClick={() => setFilter("all")}
                 className="
-                    px-5
+                     px-5
                     py-2
                     rounded-xl
-                    bg-[#2F6B5F]
-                    text-white
-                    font-medium
+                    hover:bg-green-50
                 "
             >
                 All

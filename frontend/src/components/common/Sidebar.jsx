@@ -12,7 +12,7 @@ const Sidebar = () => {
         }`;
 
     return (
-        <div className="w-64 bg-white border-r border-slate-200 min-h-screen p-5 sticky top-0">
+        <div className="w-64 bg-white border-r border-slate-200 h-screen p-5 sticky top-0">
 
             {/* Logo */}
             <h2 className="text-2xl font-bold text-emerald-600 mb-10">

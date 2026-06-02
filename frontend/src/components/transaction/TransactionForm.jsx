@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {CATEGORIES} from "../../utils/constants";
 
 const TransactionForm = ({ onSubmit ,  wallets = [] }) => {
 
@@ -123,9 +124,8 @@ const TransactionForm = ({ onSubmit ,  wallets = [] }) => {
 
                 </select>
 
-                <input
+                <select
                     name="category"
-                    placeholder="Category"
                     value={form.category}
                     onChange={handleChange}
                     className="
@@ -135,7 +135,16 @@ const TransactionForm = ({ onSubmit ,  wallets = [] }) => {
                         border
                         border-[#D9E8E3]
                     "
-                />
+                >
+                    {CATEGORIES.map((category) => (
+                        <option
+                            key={category}
+                            value={category}
+                        >
+                            {category}
+                        </option>
+                    ))}
+                </select>
 
             </div>
 

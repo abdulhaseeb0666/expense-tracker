@@ -10,6 +10,55 @@ export const CATEGORIES = [
     "Bills",
     "Health",
     "Salary",
+
+    // Housing
+    "Rent",
+    "Utilities",
+    "Maintenance",
+
+    // Education
+    "Education",
+    "Books",
+    "Courses",
+
+    // Entertainment
+    "Entertainment",
+    "Movies",
+    "Games",
+    "Subscriptions",
+
+    // Finance
+    "Savings",
+    "Investment",
+    "Insurance",
+    "Taxes",
+
+    // Lifestyle
+    "Travel",
+    "Clothing",
+    "Beauty",
+    "Gym",
+
+    // Family
+    "Family",
+    "Children",
+    "Gifts",
+
+    // Business
+    "Business",
+    "Office",
+    "Freelance",
+
+    // Income Sources
+    "Bonus",
+    "Commission",
+    "Interest",
+    "Rental Income",
+
+    // Miscellaneous
+    "Charity",
+    "Pets",
+    "Emergency",
     "Other"
 ];
 

@@ -1,6 +1,7 @@
 // src/components/transaction/EditTransactionForm.jsx
 
 import { useState } from "react";
+import {CATEGORIES} from "../../utils/constants";
 
 const EditTransactionForm = ({
     transaction,
@@ -143,9 +144,8 @@ const EditTransactionForm = ({
 
                 </select>
 
-                <input
+                <select
                     name="category"
-                    placeholder="Category"
                     value={formData.category}
                     onChange={handleChange}
                     className="
@@ -155,7 +155,13 @@ const EditTransactionForm = ({
                         border
                         border-[#D9E8E3]
                     "
-                />
+                >
+                    {CATEGORIES.map((category) => (
+                        <option key={category} value={category}>
+                            {category}
+                        </option>
+                    ))}
+                </select>
 
             </div>
 
