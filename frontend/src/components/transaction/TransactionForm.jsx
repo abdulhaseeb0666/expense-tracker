@@ -136,6 +136,10 @@ const TransactionForm = ({ onSubmit ,  wallets = [] }) => {
                         border-[#D9E8E3]
                     "
                 >
+                    <option value="">
+                        Select Category
+                    </option>
+                    
                     {CATEGORIES.map((category) => (
                         <option
                             key={category}

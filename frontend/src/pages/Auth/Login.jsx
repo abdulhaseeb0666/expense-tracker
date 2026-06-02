@@ -2,11 +2,25 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+    
+    
     
     const navigate = useNavigate();
     const { login } = useAuth();
     
+    if (localStorage.getItem("token")) {
+        
+        toast.info("You are already logged in");
+        
+        setTimeout(() => {
+            navigate("/dashboard");
+        } , 1000)
+        
+        return null;
+    }
+
     const [formData, setFormData] = useState({
         email: "",
         password: ""

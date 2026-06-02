@@ -25,13 +25,13 @@ const Sidebar = () => {
                 <Link to="/dashboard" className={linkClass("/dashboard")}>
                     Dashboard
                 </Link>
+                
+                <Link to="/wallets" className={linkClass("/wallets")}>
+                    Wallets
+                </Link>
 
                 <Link to="/transactions" className={linkClass("/transactions")}>
                     Transactions
-                </Link>
-
-                <Link to="/wallets" className={linkClass("/wallets")}>
-                    Wallets
                 </Link>
 
                 <Link to="/budgets" className={linkClass("/budgets")}>
