@@ -1,13 +1,17 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import path from "path";
 import connectDB from "./config/db.js";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import passport from "./config/passport.js";
+import session from "express-session";
+
 
 const app = express();
-dotenv.config();
 
 connectDB();
 
@@ -23,6 +27,16 @@ app.use(rateLimit({
     max: 100000000
 }));
 
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 import userRoutes from "./routes/userRoutes.js";
 import walletRoutes from "./routes/walletRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
