@@ -8,7 +8,9 @@ export const register = async (req, res) => {
         const { name, email, password } = req.body;
 
         // 1. Check if user already exists
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({
+            email: profile.emails[0].value,
+        });
 
         if (existingUser) {
             return res.status(400).json({
@@ -22,9 +24,9 @@ export const register = async (req, res) => {
 
         // 3. Create user
         const user = await User.create({
-            name,
-            email,
-            password: hashedPassword
+            name: profile.displayName,
+            email: profile.emails[0].value,
+            provider: "google",
         });
 
         // 4. Generate JWT
