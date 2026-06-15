@@ -66,63 +66,95 @@ const MonthlyOverview = ({ data = [] }) => {
 
             <div className="h-80">
 
-                <ResponsiveContainer width="100%" height="100%" >
+                {
+                    data.length > 0 ? (
+                        <ResponsiveContainer width="100%" height="100%" >
 
-                    <BarChart data={chartData}>
-        
-                        {chartData.map((month, index) => (
-                            <ReferenceArea
-                                key={month.month}
-                                x1={month.month}
-                                x2={month.month}
-                                fill={COLORS[index % COLORS.length]}
-                                fillOpacity={0.3}
-                            />
-                        ))}
+                            <BarChart data={chartData}>
+                
+                                {chartData.map((month, index) => (
+                                    <ReferenceArea
+                                        key={month.month}
+                                        x1={month.month}
+                                        x2={month.month}
+                                        fill={COLORS[index % COLORS.length]}
+                                        fillOpacity={0.3}
+                                    />
+                                ))}
 
-                        <CartesianGrid strokeDasharray="5 5" stroke="#E5F4EA" />
+                                <CartesianGrid strokeDasharray="5 5" stroke="#E5F4EA" />
 
-                        <XAxis dataKey="month" tick={{ fill: "#2F855A" }} />
+                                <XAxis dataKey="month" tick={{ fill: "#2F855A" }} />
 
-                        <YAxis  tick={{ fill: "#2F855A" }} />
+                                <YAxis  tick={{ fill: "#2F855A" }} />
 
-                        <Legend
-                            wrapperStyle={{
-                                paddingTop: 15
-                            }}
-                        />
+                                <Legend
+                                    wrapperStyle={{
+                                        paddingTop: 15
+                                    }}
+                                />
 
-                        <Tooltip
-                            contentStyle={{
-                                backgroundColor: "#fff",
-                                borderRadius: "16px",
-                                border: "none",
-                                boxShadow: "0 8px 30px rgba(0,0,0,.1)"
-                            }}
-                            formatter={(value) => formatCurrency(value)}
-                        />
-                            
-                        <Bar
-                            dataKey="income"
-                            fill="#38A169"
-                            radius={[10,10,0,0]}
-                        />
+                                <Tooltip
+                                    contentStyle={{
+                                        backgroundColor: "#fff",
+                                        borderRadius: "16px",
+                                        border: "none",
+                                        boxShadow: "0 8px 30px rgba(0,0,0,.1)"
+                                    }}
+                                    formatter={(value) => formatCurrency(value)}
+                                />
+                                    
+                                <Bar
+                                    dataKey="income"
+                                    fill="#38A169"
+                                    radius={[10,10,0,0]}
+                                />
 
-                        <Bar
-                            dataKey="expense"
-                            fill="#E53E3E"
-                            radius={[10,10,0,0]}
-                        />
+                                <Bar
+                                    dataKey="expense"
+                                    fill="#E53E3E"
+                                    radius={[10,10,0,0]}
+                                />
 
-                        <Bar
-                            dataKey="profit"
-                            fill="#D69E2E"
-                            radius={[10,10,0,0]}
-                        />
+                                <Bar
+                                    dataKey="profit"
+                                    fill="#D69E2E"
+                                    radius={[10,10,0,0]}
+                                />
 
-                    </BarChart>
+                            </BarChart>
 
-                </ResponsiveContainer>
+                        </ResponsiveContainer>
+                    ) : (
+                        <div className="flex flex-col items-center justify-center h-fit">
+                            <div className="w-20 h-20 rounded-full bg-white shadow-md flex items-center justify-center mb-4">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-10 h-10 text-emerald-500"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M9 17v-6m3 6V7m3 10v-3m2 8H7a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v14a2 2 0 01-2 2z"
+                                    />
+                                </svg>
+                            </div>
+
+                            <h3 className="text-xl font-semibold text-gray-800">
+                                No Analytics Data
+                            </h3>
+
+                            <p className="text-gray-500 text-center mt-2 max-w-xs">
+                                There are no transactions available.
+                                Add some income or expense records to see visual insights.
+                            </p>
+                        </div>
+                    )
+                }
 
             </div>
 

@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
 
     provider: {
         type: String,
+        enum: ["local", "google"],
         default: "local"
     },
 
@@ -32,6 +33,15 @@ const userSchema = new mongoose.Schema(
     avatar: {
         type: String,
         default: "default.png"
+    },
+
+    otp: String,
+    
+    otpExpires: Date,
+    
+    isVerified: {
+        type: Boolean,
+        default: false
     },
 
     currency: {

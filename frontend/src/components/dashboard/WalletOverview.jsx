@@ -43,67 +43,102 @@ const WalletOverview = ({ data = [] }) => {
                 </p>
             </div>
 
-            <div className="h-80">
+           {
+                chartData.length > 0 ? (
 
-                <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer width="100%" height="100%">
 
-                    <BarChart data={chartData}>
+                        <BarChart data={chartData}>
 
-                        {chartData.map((wallet, index) => (
-                            <ReferenceArea
-                                key={wallet.wallet}
-                                x1={wallet.wallet}
-                                x2={wallet.wallet}
-                                fill={
-                                    WALLET_COLORS[
-                                        index % WALLET_COLORS.length
-                                    ]
-                                }
-                                fillOpacity={0.7}
+                            {chartData.map((wallet, index) => (
+                                <ReferenceArea
+                                    key={wallet.wallet}
+                                    x1={wallet.wallet}
+                                    x2={wallet.wallet}
+                                    fill={
+                                        WALLET_COLORS[
+                                            index % WALLET_COLORS.length
+                                        ]
+                                    }
+                                    fillOpacity={0.7}
+                                />
+                            ))}
+
+                            <CartesianGrid strokeDasharray="2 3" />
+
+                            <XAxis dataKey="wallet" />
+
+                            <YAxis />
+
+                            <Legend />
+
+                            <Tooltip
+                                contentStyle={{
+                                    borderRadius: "16px",
+                                    border: "none",
+                                    backgroundColor: "#ffffff",
+                                    boxShadow: "0 8px 25px rgba(0,0,0,.15)"
+                                }}
+                                formatter={(value) => formatCurrency(value)}
                             />
-                        ))}
 
-                        <CartesianGrid strokeDasharray="2 3" />
+                            <Bar
+                                dataKey="income"
+                                fill="#38A169"
+                                radius={[10,10,0,0]}
+                            />
 
-                        <XAxis dataKey="wallet" />
+                            <Bar
+                                dataKey="expense"
+                                fill="#E53E3E"
+                                radius={[10,10,0,0]}
+                            />
 
-                        <YAxis />
+                            <Bar
+                                dataKey="balance"
+                                fill="#D69E2E"
+                                radius={[10,10,0,0]}
+                            />
 
-                        <Legend />
+                        </BarChart>
 
-                        <Tooltip
-                            contentStyle={{
-                                borderRadius: "16px",
-                                border: "none",
-                                backgroundColor: "#ffffff",
-                                boxShadow: "0 8px 25px rgba(0,0,0,.15)"
-                            }}
-                            formatter={(value) => formatCurrency(value)}
-                        />
+                    </ResponsiveContainer>
 
-                        <Bar
-                            dataKey="income"
-                            fill="#38A169"
-                            radius={[10,10,0,0]}
-                        />
+                ) : (
 
-                        <Bar
-                            dataKey="expense"
-                            fill="#E53E3E"
-                            radius={[10,10,0,0]}
-                        />
+                    <div className="flex flex-col items-center justify-center h-fit">
 
-                        <Bar
-                            dataKey="balance"
-                            fill="#D69E2E"
-                            radius={[10,10,0,0]}
-                        />
+                        <div className="w-20 h-20 rounded-full bg-white shadow-md flex items-center justify-center mb-3">
 
-                    </BarChart>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-10 h-10 text-emerald-500"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 9V7a5 5 0 00-10 0v2M5 9h14v10H5V9z"
+                                />
+                            </svg>
 
-                </ResponsiveContainer>
+                        </div>
 
-            </div>
+                        <h3 className="text-xl font-semibold text-gray-800">
+                            No Wallet Data
+                        </h3>
+
+                        <p className="text-gray-500 text-center mt-2 max-w-xs">
+                            No wallet transactions are available yet.
+                            Create a wallet and add transactions to view wallet performance analytics.
+                        </p>
+                    </div>
+
+                )
+            }
 
         </div>
     );

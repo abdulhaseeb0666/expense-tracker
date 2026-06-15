@@ -42,9 +42,10 @@ router.get(
 import {authMiddleware , authLimiter} from "../middleware/authMiddleware.js";
 import {validate} from "../middleware/validateMiddleware.js";
 import {registerValidation, loginValidation} from "../validation/authValidation.js";
-import { register, login, logout, getMe } from "../controllers/authController.js";
+import {verifyEmailOTP , registerWithEmail, googleAuthSuccess, login, logout, getMe } from "../controllers/authController.js";
 
-router.post("/register", registerValidation, authLimiter, validate, register);
+router.post("/verify-email-otp", authLimiter, validate, verifyEmailOTP);
+router.post("/register-email", registerValidation, authLimiter, validate, registerWithEmail);
 router.post("/login", loginValidation, authLimiter, validate, login);
 router.post('/logout', authMiddleware, logout);
 router.get('/me', authMiddleware, getMe);

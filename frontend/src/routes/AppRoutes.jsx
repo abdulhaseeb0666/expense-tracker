@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import OAuthSuccess from "../pages/auth/OAuthSuccess";
+import VerifyOTP from "../pages/otp/verifyOTP";
 
 import Dashboard from "../pages/dashboard/Dashboard";
 
@@ -98,6 +99,10 @@ const AppRoutes = () => {
                 } />
                 <Route
                     element={<OAuthSuccess />} path="/oauth-success"
+                />
+                <Route
+                    path="/verify-otp"
+                    element={<VerifyOTP />}
                 />
             </Routes>
 

@@ -126,6 +126,12 @@ const Login = () => {
                         <span>Continue with Google</span>
                     </button>
 
+                    <p>
+                    <span className="text-gray-500 text-sm text-center block mt-1">
+                        Google will register you as new user if you don’t have an account yet.
+                    </span>
+                    </p>
+
                 {/* Footer */}
                 <p className="text-center text-sm text-gray-500 mt-5">
                     Don’t have an account?

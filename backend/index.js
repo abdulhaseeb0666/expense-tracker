@@ -10,7 +10,6 @@ import rateLimit from "express-rate-limit";
 import passport from "./config/passport.js";
 import session from "express-session";
 
-
 const app = express();
 
 connectDB();

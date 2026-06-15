@@ -1,8 +1,13 @@
 import api from "../api/axios";
 
 export const registerUser = async (userData) => {
-    const response = await api.post("/auth/register", userData);
-    return response.data;
+    try {
+        const response = await api.post("/auth/register-email", userData);
+        return response.data;
+    } catch (error) {
+        console.error("Error registering user:", error);
+        throw error;
+    }
 };
 
 export const loginUser = async (userData) => {

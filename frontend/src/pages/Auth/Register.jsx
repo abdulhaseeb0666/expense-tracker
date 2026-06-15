@@ -15,8 +15,7 @@ const Register = () => {
         try {
             setLoading(true);
             await registerUser(data);
-            toast.success("Registration successful");
-            navigate("/login");
+            navigate("/verify-otp");
         } catch (error) {
             toast.error(error.response?.data?.message);
         } finally {

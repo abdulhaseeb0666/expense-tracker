@@ -74,8 +74,6 @@ const Budgets = () => {
 
         } catch (error) {
 
-            console.log(error.response?.data);
-
             toast.error(
                 error.response?.data?.message ||
                 "Failed to create budget"

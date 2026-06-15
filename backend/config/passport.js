@@ -34,7 +34,7 @@ passport.use(
                 return done(null, user);
 
             } catch (error) {
-                done(error, null);
+                return done(error, null);
             }
         }
     )
@@ -48,5 +48,7 @@ passport.deserializeUser(async (id, done) => {
     const user = await User.findById(id);
     done(null, user);
 });
+
+
 
 export default passport;

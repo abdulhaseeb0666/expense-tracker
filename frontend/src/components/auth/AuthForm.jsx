@@ -4,7 +4,8 @@ const AuthForm = ({ type = "login", onSubmit }) => {
     const [form, setForm] = useState({
         name: "",
         email: "",
-        password: ""
+        password: "",
+        confirmPassword: "",
     });
 
     const handleChange = (e) => {
@@ -46,6 +47,17 @@ const AuthForm = ({ type = "login", onSubmit }) => {
                     name="password"
                     type="password"
                     placeholder="Password"
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg 
+                               focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+            </div>
+
+            <div>
+                <input
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="Confirm Password"
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-200 rounded-lg 
                                focus:outline-none focus:ring-2 focus:ring-green-500"

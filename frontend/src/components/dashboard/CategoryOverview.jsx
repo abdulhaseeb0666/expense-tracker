@@ -40,55 +40,91 @@ const CategoryOverview = ({ data = [] }) => {
                 </p>
             </div>
 
-            <div className="h-80">
+            {
+    chartData.length > 0 ? (
 
-                <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%">
 
-                    <PieChart>
+            <PieChart>
 
-                        <Pie
-                            data={chartData}
-                            dataKey="amount"
-                            nameKey="category"
-                            cx="50%"
-                            cy="50%"
-                            innerRadius={70}
-                            outerRadius={120}
-                            paddingAngle={3}
-                            label={({ category, percent }) =>
-                                `${category} (${(percent * 100).toFixed(0)}%)`
+                <Pie
+                    data={chartData}
+                    dataKey="amount"
+                    nameKey="category"
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={70}
+                    outerRadius={120}
+                    paddingAngle={3}
+                    label={({ category, percent }) =>
+                        `${category} (${(percent * 100).toFixed(0)}%)`
+                    }
+                >
+
+                    {chartData.map((entry, index) => (
+                        <Cell
+                            key={entry.category}
+                            fill={
+                                COLORS[
+                                    index % COLORS.length
+                                ]
                             }
-                        >
-
-                            {chartData.map((entry, index) => (
-                                <Cell
-                                    key={entry.category}
-                                    fill={
-                                        COLORS[
-                                            index % COLORS.length
-                                        ]
-                                    }
-                                />
-                            ))}
-
-                        </Pie>
-
-                        <Tooltip
-                            contentStyle={{
-                                borderRadius: "16px",
-                                border: "none",
-                                boxShadow: "0 8px 30px rgba(0,0,0,.1)"
-                            }}
-                            formatter={(value) => formatCurrency(value)}
                         />
+                    ))}
 
-                        <Legend />
+                </Pie>
 
-                    </PieChart>
+                <Tooltip
+                    contentStyle={{
+                        borderRadius: "16px",
+                        border: "none",
+                        boxShadow: "0 8px 30px rgba(0,0,0,.1)"
+                    }}
+                    formatter={(value) => formatCurrency(value)}
+                />
 
-                </ResponsiveContainer>
+                <Legend />
+
+            </PieChart>
+
+        </ResponsiveContainer>
+
+    ) : (
+
+        <div className="flex flex-col items-center justify-center h-fit">
+
+            <div className="w-20 h-20 rounded-full bg-white shadow-md flex items-center justify-center mb-4">
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-10 h-10 text-emerald-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M11 3v18m0 0a8 8 0 100-16 8 8 0 000 16zm0 0V3"
+                    />
+                </svg>
 
             </div>
+
+            <h3 className="text-xl font-semibold text-gray-800">
+                No Category Data
+            </h3>
+
+            <p className="text-gray-500 text-center mt-2 max-w-xs">
+                No expenses have been categorized yet.
+                Add transactions to see spending distribution across categories.
+            </p>
+
+        </div>
+
+    )
+}
 
         </div>
     );
