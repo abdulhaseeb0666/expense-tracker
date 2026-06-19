@@ -1,6 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import dns from 'node:dns';
+
+// Configure Node.js to use Google Public DNS globally
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 import express from "express";
 import cors from "cors";
 import path from "path";
@@ -23,7 +28,7 @@ app.use(express.urlencoded({extended : true}));
 
 app.use(rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100000000
+    max: 200
 }));
 
 app.use(
