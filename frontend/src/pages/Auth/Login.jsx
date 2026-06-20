@@ -96,7 +96,7 @@ const Login = () => {
                         type="button"
                         onClick={() => {
                             window.location.href =
-                            "http://localhost:3000/api/auth/google";
+                            "https://expense-tracker-p3ec.onrender.com/api/auth/google";
                         }}
                         className="w-full flex items-center justify-center gap-3 py-3 mt-4 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition"
                         >
