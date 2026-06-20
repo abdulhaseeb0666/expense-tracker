@@ -27,7 +27,7 @@ const Register = () => {
         <AuthLayout>
             <AuthHeader title="Register" subtitle="Create your account" />
             <AuthForm type="register" onSubmit={handleRegister} />
-            {loading && <p className="text-center">Loading...</p>}
+            {loading && <p className="text-center mt-4 text-sm text-gray-500 bg-gray-100 py-2 rounded shadow">Loading...</p>}
         </AuthLayout>
     );
 };

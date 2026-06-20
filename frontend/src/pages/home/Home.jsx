@@ -168,6 +168,143 @@ const Home = () => {
 
             </section>
 
+            {/* Footer */}
+            <footer className="bg-slate-900 text-slate-300">
+
+    <div className="max-w-7xl mx-auto px-6 py-14">
+
+        <div className="grid md:grid-cols-4 gap-10">
+
+            {/* Brand */}
+            <div>
+
+                <h2 className="text-2xl font-bold text-emerald-500 mb-4">
+                    ExpenseTracker
+                </h2>
+
+                <p className="text-slate-400 leading-relaxed">
+                    A modern personal finance platform designed
+                    to help you track expenses, manage budgets,
+                    and gain complete control over your money.
+                </p>
+
+            </div>
+
+            {/* Product */}
+            <div>
+
+                <h3 className="text-white font-semibold mb-4">
+                    Product
+                </h3>
+
+                <ul className="space-y-3">
+
+                    <li>
+                        <Link
+                            to="/register"
+                            className="hover:text-emerald-400 transition"
+                        >
+                            Get Started
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link
+                            to="/login"
+                            className="hover:text-emerald-400 transition"
+                        >
+                            Login
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link
+                            to="/features"
+                            className="hover:text-emerald-400 transition"
+                        >
+                            Features
+                        </Link> 
+                    </li>
+
+                </ul>
+
+            </div>
+
+            {/* Features */}
+            <div>
+
+                <h3 className="text-white font-semibold mb-4">
+                    Features
+                </h3>
+
+                <ul className="space-y-3">
+
+                    <li>Expense Tracking</li>
+                    <li>Budget Planning</li>
+                    <li>Wallet Management</li>
+                    <li>Financial Analytics</li>
+
+                </ul>
+
+            </div>
+
+            {/* Support */}
+            <div>
+
+                <h3 className="text-white font-semibold mb-4">
+                    Support
+                </h3>
+
+                <ul className="space-y-3">
+
+                    <li>
+                        <Link
+                            to="/contact"
+                            className="hover:text-emerald-400 transition"
+                        >
+                            Contact Us
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link
+                            to="/privacy-policy"
+                            className="hover:text-emerald-400 transition"
+                        >
+                            Privacy Policy
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link
+                            to="/terms-of-service"
+                            className="hover:text-emerald-400 transition"
+                        >    
+                            Terms of Service
+                        </Link>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        {/* Bottom Bar */}
+
+        <div className="border-t border-slate-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+
+            <p className="text-sm text-slate-500">
+                © {new Date().getFullYear()} ExpenseTracker.
+                All rights reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
         </div>
     );
 };

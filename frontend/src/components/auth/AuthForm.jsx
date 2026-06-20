@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AuthForm = ({ type = "login", onSubmit }) => {
     const [form, setForm] = useState({
@@ -108,6 +109,16 @@ const AuthForm = ({ type = "login", onSubmit }) => {
             <p className="text-xs text-center text-gray-400 mt-4">
                 By continuing you agree to secure encrypted storage of your financial data.
             </p>
+
+            {/* Footer */}
+                <p className="text-center text-sm text-gray-500 mt-5">
+                    Already have an account?
+                    <span className="text-emerald-600 font-medium cursor-pointer ml-1 hover:underline">
+                        <Link to="/login">
+                            Login
+                        </Link>
+                    </span>
+                </p>
 
         </form>
     );

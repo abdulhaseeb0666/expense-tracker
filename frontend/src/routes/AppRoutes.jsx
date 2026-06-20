@@ -6,6 +6,10 @@ import OAuthSuccess from "../pages/auth/OAuthSuccess";
 import VerifyOTP from "../pages/otp/verifyOTP";
 
 import Dashboard from "../pages/dashboard/Dashboard";
+import ContactUs from "../pages/contact/ContactUs";
+import PrivacyPolicy from "../pages/policy/PrivacyPolicy";
+import TermsOfService from "../pages/terms/TermsOfService";
+import Features from "../pages/features/Features";
 
 import Transactions from "../pages/transaction/Transactions";
 import AddTransaction from "../pages/transaction/AddTransaction";
@@ -34,7 +38,11 @@ const AppRoutes = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                
+                <Route path="/contact" element={<ContactUs />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route path="/features" element={<Features />} />
+
                 <Route path="/dashboard" element={
                     <ProtectedRoute>
                         <Dashboard />

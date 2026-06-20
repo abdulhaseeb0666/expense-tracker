@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { getCurrentUser } from "../../services/authService";
+import Modal from "../../components/common/Modal";
 
 const OAuthSuccess = () => {
   const navigate = useNavigate();
@@ -34,7 +35,11 @@ const OAuthSuccess = () => {
     handleOAuth();
   }, [navigate, setUser]);
 
-  return <div>Signing you in...</div>;
+  return (
+    <Modal isOpen={true} onClose={() => {}}>
+      <div>Signing you in...</div>
+    </Modal>
+  );
 };
 
 export default OAuthSuccess;
