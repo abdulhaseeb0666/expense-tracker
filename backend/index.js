@@ -58,6 +58,8 @@ app.use("/api/analytics" , analyticsRoutes);
 app.use("/api/budgets" , budgetRoutes);
 app.use(errorMiddleware);
 
-app.listen(process.env.PORT , () => {
-    console.log(`Server started on port ${process.env.PORT}`);
-})
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
