@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
 
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import OAuthSuccess from "../pages/auth/OAuthSuccess";
 import VerifyOTP from "../pages/otp/verifyOTP";
 
-import Dashboard from "../pages/dashboard/Dashboard";
+const Dashboard = React.lazy(() => import('./../pages/dashboard/Dashboard')); 
+
 import ContactUs from "../pages/contact/ContactUs";
 import PrivacyPolicy from "../pages/policy/PrivacyPolicy";
 import TermsOfService from "../pages/terms/TermsOfService";
