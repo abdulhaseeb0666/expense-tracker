@@ -3,10 +3,10 @@ import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
+
 const Login = () => {
-    
-    
-    
+        
     const navigate = useNavigate();
     const { login } = useAuth();
 
