@@ -34,7 +34,7 @@ router.get(
         const token = generateToken(req.user._id);
 
         res.redirect(
-            `http://localhost:5173/oauth-success?token=${token}`
+            `http://expense-tracker-by-ah.vercel.app/oauth-success?token=${token}`
         );
     }
 );
