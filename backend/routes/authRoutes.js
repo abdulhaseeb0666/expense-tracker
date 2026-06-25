@@ -33,7 +33,7 @@ router.get(
 
         const token = generateToken(req.user._id);
 
-        res.redirect(
+        res.redirect( 
             `http://expense-tracker-by-ah.vercel.app/oauth-success?token=${token}`
         );
     }
