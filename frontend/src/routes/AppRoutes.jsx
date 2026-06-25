@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 
-import Login from "../pages/auth/Login.jsx";
-import Register from "../pages/auth/Register.jsx";
-import OAuthSuccess from "../pages/auth/OAuthSuccess.jsx";
+import Login from "../pages/authorize/Login.jsx";
+import Register from "../pages/authorize/Register.jsx";
+import OAuthSuccess from "../pages/authorize/OAuthSuccess.jsx";
 import VerifyOTP from "../pages/otp/verifyOTP.jsx";
 
 const Dashboard = React.lazy(() => import('./../pages/dashboard/Dashboard.jsx')); 
