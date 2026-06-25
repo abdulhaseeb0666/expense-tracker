@@ -4,32 +4,32 @@ import React from "react";
 import Login from "../pages/auth/Login.jsx";
 import Register from "../pages/auth/Register.jsx";
 import OAuthSuccess from "../pages/auth/OAuthSuccess.jsx";
-import VerifyOTP from "../pages/otp/verifyOTP";
+import VerifyOTP from "../pages/otp/verifyOTP.jsx";
 
-const Dashboard = React.lazy(() => import('./../pages/dashboard/Dashboard')); 
+const Dashboard = React.lazy(() => import('./../pages/dashboard/Dashboard.jsx')); 
 
-import ContactUs from "../pages/contact/ContactUs";
-import PrivacyPolicy from "../pages/policy/PrivacyPolicy";
-import TermsOfService from "../pages/terms/TermsOfService";
-import Features from "../pages/features/Features";
+import ContactUs from "../pages/contact/ContactUs.jsx";
+import PrivacyPolicy from "../pages/policy/PrivacyPolicy.jsx";
+import TermsOfService from "../pages/terms/TermsOfService.jsx";
+import Features from "../pages/features/Features.jsx";
 
-import Transactions from "../pages/transaction/Transactions";
-import AddTransaction from "../pages/transaction/AddTransaction";
-import EditTransaction from "../pages/transaction/EditTransaction";
+import Transactions from "../pages/transaction/Transactions.jsx";
+import AddTransaction from "../pages/transaction/AddTransaction.jsx";
+import EditTransaction from "../pages/transaction/EditTransaction.jsx";
 
-import Wallet from "../pages/wallet/Wallets";
-import AddWallet from "../pages/wallet/AddWallet";
-import EditWallet from "../pages/wallet/EditWallet";
+import Wallet from "../pages/wallet/Wallets.jsx";
+import AddWallet from "../pages/wallet/AddWallet.jsx";
+import EditWallet from "../pages/wallet/EditWallet.jsx";
 
-import Budgets from "../pages/budget/Budgets";
-import AddBudget from "../pages/budget/AddBudget";
-import EditBudget from "../pages/budget/EditBudget";
+import Budgets from "../pages/budget/Budgets.jsx";
+import AddBudget from "../pages/budget/AddBudget.jsx";
+import EditBudget from "../pages/budget/EditBudget.jsx";
 
-import Profile from "../pages/profile/Profile";
+import Profile from "../pages/profile/Profile.jsx";
 
-import ProtectedRoute from "../components/common/ProtectedRoute";
-import NotFound from "../pages/error/NotFound";
-import Home from "../pages/home/Home";
+import ProtectedRoute from "../components/common/ProtectedRoute.jsx";
+import NotFound from "../pages/error/NotFound.jsx";
+import Home from "../pages/home/Home.jsx";
 
 const AppRoutes = () => {
     return (
