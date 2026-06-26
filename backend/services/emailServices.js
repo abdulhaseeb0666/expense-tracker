@@ -3,18 +3,16 @@ import dns from "dns";
 
 dns.setDefaultResultOrder("ipv4first");
 
+import nodemailer from "nodemailer";
+
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
-    family: 4, // Force IPv4
     auth: {
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+        pass: process.env.SMTP_PASS,
     },
-    tls: {
-        rejectUnauthorized: false
-    }
 });
 
 transporter.verify((error, success) => {
