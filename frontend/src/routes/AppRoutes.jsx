@@ -104,16 +104,16 @@ const AppRoutes = () => {
                         <Profile />
                     </ProtectedRoute>
                 } />
-                <Route path="*" element={
-                        <NotFound />
-                } />
-                <Route
-                    element={<OAuthSuccess />} path="/oauth-success"
+                <Route path="/oauth-success"
+                    element={<OAuthSuccess />} 
                 />
                 <Route
                     path="/verify-otp"
                     element={<VerifyOTP />}
                 />
+                <Route path="*" element={
+                        <NotFound />
+                } />
             </Routes>
 
         </BrowserRouter>
