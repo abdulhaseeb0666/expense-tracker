@@ -20,22 +20,23 @@ transporter.verify((error, success) => {
 
 });
 
-export const sendOTP = async (
-        email,
-        otp
-    ) => {
+export const sendOTP = async (email, otp) => {
+    try {
 
+        const info = await transporter.sendMail({
+            from: process.env.SMTP_USER,
+            to: email,
+            subject: "Expense Tracker OTP",
+            html: `
+                <h2>Your OTP</h2>
+                <h1>${otp}</h1>
+            `
+        });
 
-    await transporter.sendMail({
-        from: process.env.SMTP_USER,
-        to: email,
-        subject:
-            "Expense Tracker OTP Verification",
-        html: `
-            <h2>Your OTP</h2>
-            <h1>${otp}</h1>
-            <p>Valid for 10 minutes</p>
-        `
-    });
+        console.log(info);
 
+    } catch (err) {
+        console.error("SEND OTP ERROR:", err);
+        throw err;
+    }
 };

@@ -3,7 +3,6 @@ import PendingUser from "../models/PendingUser.js";
 import Session from "../models/Session.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import done from "passport-google-oauth20";
 import {sendOTP} from "../services/emailServices.js";
 
 export const registerWithEmail = async ( req, res ) => {
@@ -223,7 +222,7 @@ export const login = async (req, res) => {
 
         // 2. Check password
         if (user.provider === "google") {
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
                 message:
                     "This account uses Google Sign-In"
