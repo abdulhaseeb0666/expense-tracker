@@ -17,7 +17,8 @@ const generateToken = (id) => {
 router.get(
     "/google",
     passport.authenticate("google", {
-        scope: ["profile", "email"]
+        scope: ["profile", "email"],
+        prompt: "select_account"
     })
 );
 
