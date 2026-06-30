@@ -1,42 +1,47 @@
-import nodemailer from "nodemailer";
+import SibApiV3Sdk from "sib-api-v3-sdk";
 
-const transporter = nodemailer.createTransport({
-    host: "smtp-relay.brevo.com",
-    port: 587,
-    secure: false,
-    requireTLS: true,
-    logger: true,
-    debug: true,
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-    },
-});
+const client = SibApiV3Sdk.ApiClient.instance;
 
-transporter.verify((err) => {
-    if (err) {
-        console.error("SMTP Error:", err);
-    } else {
-        console.log("Brevo SMTP Connected");
-    }
-});
+client.authentications["api-key"].apiKey =
+    process.env.BREVO_API_KEY;
+
+const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 export const sendOTP = async (email, otp) => {
     try {
-        const info = await transporter.sendMail({
-            from: `"Expense Tracker" <${process.env.SMTP_FROM}>`,
-            to: email,
+
+        await apiInstance.sendTransacEmail({
+
+            sender: {
+                email: process.env.BREVO_SENDER_EMAIL,
+                name: process.env.BREVO_SENDER_NAME
+            },
+
+            to: [
+                {
+                    email
+                }
+            ],
+
             subject: "Expense Tracker OTP Verification",
-            html: `
-                <div style="font-family:Arial,sans-serif">
+
+            htmlContent: `
+                <div style="font-family:Arial;padding:30px">
+
                     <h2>Email Verification</h2>
 
-                    <p>Your OTP is:</p>
+                    <p>
+                        Thank you for registering.
+                    </p>
+
+                    <p>
+                        Your One-Time Password is:
+                    </p>
 
                     <h1
                         style="
-                            letter-spacing:5px;
-                            color:#10b981;
+                            color:#10B981;
+                            letter-spacing:6px;
                         "
                     >
                         ${otp}
@@ -50,16 +55,24 @@ export const sendOTP = async (email, otp) => {
                     <hr>
 
                     <small>
-                        If you didn't request this email,
-                        please ignore it.
+                        If you didn't request this,
+                        please ignore this email.
                     </small>
+
                 </div>
-            `,
+            `
+
         });
 
-        console.log("Email sent:", info.messageId);
-    } catch (err) {
-        console.error(err);
-        throw err;
+        console.log("OTP email sent.");
+
+    } catch (error) {
+
+        console.error(
+            "Brevo Error:",
+            error.response?.body || error
+        );
+
+        throw error;
     }
 };
