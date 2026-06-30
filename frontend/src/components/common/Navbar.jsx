@@ -24,7 +24,7 @@ const Navbar = () => {
                     <img
                         src={
                             user?.avatar
-                                ? `http://localhost:3000/${user.avatar}`
+                                ? `http://expense-tracker-p3ec.onrender.com/${user.avatar}`
                                 : "/default-avatar.svg"
                         }
                         alt="avatar"
