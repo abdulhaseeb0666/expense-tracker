@@ -28,7 +28,7 @@ const VerifyOTP = () => {
             setError("");
 
             const { data } = await axios.post(
-                "http://expense-tracker-p3ec.onrender.com/api/auth/verify-email-otp",
+                "https://expense-tracker-p3ec.onrender.com/api/auth/verify-email-otp",
                 formData
             );
 

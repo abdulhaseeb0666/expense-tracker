@@ -178,7 +178,7 @@ const Profile = () => {
                                 <img
                                     src={
                                         user?.avatar
-                                            ? `http://expense-tracker-p3ec.onrender.com/${user.avatar}`
+                                            ? `https://expense-tracker-p3ec.onrender.com/${user.avatar}`
                                             : "/default-avatar.png"
                                     }
                                     alt="avatar"
