@@ -50,35 +50,79 @@ const Dashboard = () => {
     return (
         <DashboardLayout>
 
-            <div className="space-y-8">
+    <div
+        className="
+            space-y-8
+            max-[800px]:space-y-6
+            max-[600px]:space-y-5
+            max-[400px]:space-y-4
+        "
+    >
 
-                {/* Summary */}
-                <div className="grid gap-6">
-                    <BalanceCard balance={summary?.balance || 0} />
+        {/* Summary */}
+        <div
+            className="
+                grid
+                gap-6
+                max-[800px]:gap-5
+                max-[600px]:gap-4
+                max-[400px]:gap-3
+            "
+        >
+            <BalanceCard
+                balance={summary?.balance || 0}
+            />
 
-                    <SummaryCards
-                        data={{
-                            income: summary?.income || 0,
-                            expense: summary?.expense || 0,
-                            balance: summary?.balance || 0
-                        }}
-                    />
-                </div>
+            <SummaryCards
+                data={{
+                    income: summary?.income || 0,
+                    expense: summary?.expense || 0,
+                    balance: summary?.balance || 0
+                }}
+            />
+        </div>
 
-                {/* Charts */}
-                <MonthlyOverview data={monthlyStats} />
+        {/* Monthly Chart */}
+        <div className="w-full overflow-x-auto">
+            <MonthlyOverview
+                data={monthlyStats}
+            />
+        </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <WalletOverview data={walletStats} />
-                    <CategoryOverview data={categoryStats} />
-                </div>
+        {/* Wallet & Category Charts */}
+        <div
+            className="
+                grid
+                grid-cols-2
+                gap-6
 
-                {/* Transactions */}
-                <RecentTransactions transactions={transactions} />
+                max-[800px]:grid-cols-1
+                max-[800px]:gap-5
 
-            </div>
+                max-[600px]:gap-4
 
-        </DashboardLayout>
+                max-[400px]:gap-3
+            "
+        >
+            <WalletOverview
+                data={walletStats}
+            />
+
+            <CategoryOverview
+                data={categoryStats}
+            />
+        </div>
+
+        {/* Recent Transactions */}
+        <div className="w-full overflow-x-auto">
+            <RecentTransactions
+                transactions={transactions}
+            />
+        </div>
+
+    </div>
+
+</DashboardLayout>
     );
 };
 
