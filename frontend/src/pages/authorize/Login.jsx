@@ -37,11 +37,24 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-green-50 via-white to-emerald-50 px-4">
+        <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-green-50 via-white to-emerald-50 px-4 py-8">
 
             <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-md bg-white/80 backdrop-blur-lg border border-green-100 shadow-xl rounded-2xl p-8"
+                className="
+                w-full
+                max-w-md
+                sm:max-w-lg
+                lg:max-w-md
+                bg-white/90
+                backdrop-blur-lg
+                border
+                border-green-100
+                shadow-2xl
+                rounded-2xl
+                p-6
+                sm:p-8
+                "
             >
 
                 {/* Header */}
