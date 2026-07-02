@@ -1,6 +1,10 @@
 import useAuth from "../../hooks/useAuth";
+import { HiOutlineBars3 } from "react-icons/hi2";
 
-const Navbar = () => {
+const Navbar = ({
+    sidebarOpen,
+    setSidebarOpen
+}) => {
 
     const { user } = useAuth();
 
@@ -20,7 +24,7 @@ const Navbar = () => {
 
             <div className="flex items-center gap-4">
                 {/* User */}
-                <div className="flex items-center gap-3 bg-slate-50 px-3 py-2 rounded-full">
+                <div className="flex items-center gap-3 bg-slate-50 px-3 py-2 rounded-full not-md:hidden">
                     <img
                         src={
                             user?.avatar
@@ -40,12 +44,21 @@ const Navbar = () => {
                     </div>  
                 </div>
                 
-                <div 
-                    className="bg-red-500 p-2 text-black font-semibold rounded-md cursor-pointer hover:bg-red-600 transition-colors" 
-                    onClick={logout}
-                >
-                    Log Out
-                </div>
+                {/* Desktop Logout */}
+<div
+    className="hidden min-[800px]:block bg-red-500 px-4 py-2 text-white font-semibold rounded-md cursor-pointer hover:bg-red-600 transition-colors"
+    onClick={logout}
+>
+    Log Out
+</div>
+
+{/* Mobile Menu Button */}
+<button
+    className="min-[800px]:hidden text-3xl text-slate-700"
+    onClick={() => setSidebarOpen(true)}
+>
+    <HiOutlineBars3 />
+</button>
 
             </div>
 

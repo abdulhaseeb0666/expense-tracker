@@ -1,8 +1,14 @@
 import { Link , useLocation } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = (mobile) => {
 
     const location = useLocation();
+
+    const logout = () => {
+        console.log("Logging out...");
+        localStorage.removeItem("token");
+        window.location.reload();
+    };
 
     const linkClass = (path) =>
         `px-4 py-2 rounded-lg transition font-medium ${
@@ -43,6 +49,28 @@ const Sidebar = () => {
                 </Link>
 
             </div>
+
+            {mobile && (
+    <div className="px-5 mt-8 md:hidden">
+
+        <button
+            onClick={logout}
+            className="
+                w-full
+                bg-red-500
+                text-white
+                py-3
+                rounded-lg
+                font-semibold
+                hover:bg-red-600
+                transition
+            "
+        >
+            Log Out
+        </button>
+
+    </div>
+)}
 
         </div>
     );
