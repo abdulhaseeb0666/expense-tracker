@@ -28,7 +28,7 @@ const CategoryOverview = ({ data = [] }) => {
     }));
 
     return (
-        <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6 hover:shadow-xl transition-all">
+        <div className="bg-white rounded-2xl shadow p-6 min-h-107.5 flex flex-col border border-green-100 hover:shadow-xl transition-all">
 
             <div className="mb-6">
                 <h2 className="text-2xl font-bold text-green-900">
@@ -43,6 +43,7 @@ const CategoryOverview = ({ data = [] }) => {
             {
                 chartData.length > 0 ? (
 
+                    <div className="flex-1 min-h-80">
                     <ResponsiveContainer width="100%" height="100%">
 
                         <PieChart>
@@ -53,8 +54,8 @@ const CategoryOverview = ({ data = [] }) => {
                                 nameKey="category"
                                 cx="50%"
                                 cy="50%"
-                                innerRadius={70}
-                                outerRadius={120}
+                                innerRadius={50}
+                                outerRadius={80}
                                 paddingAngle={3}
                                 label={({ category, percent }) =>
                                     `${category} (${(percent * 100).toFixed(0)}%)`
@@ -88,7 +89,7 @@ const CategoryOverview = ({ data = [] }) => {
                         </PieChart>
 
                     </ResponsiveContainer>
-
+                    </div>
                 ) 
                 : (
 

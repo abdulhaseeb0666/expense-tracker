@@ -1,4 +1,5 @@
 import {
+    Cell,
     BarChart,
     Bar,
     XAxis,
@@ -23,12 +24,23 @@ import formatCurrency from "../../utils/formatCurrency";
 
 const WalletOverview = ({ data = [] }) => {
 
-    const chartData = data.map((wallet) => ({
-        wallet: wallet.walletName,
-        income: wallet.income || 0,
-        expense: wallet.expense || 0,
-        balance: (wallet.income || 0) - (wallet.expense || 0)
-    }));
+    const chartData = [
+        ...data.map((wallet) => ({
+            wallet: wallet.walletName,
+            income: wallet.income || 0,
+            expense: wallet.expense || 0,
+            balance: (wallet.income || 0) - (wallet.expense || 0),
+            isPlaceholder: false
+        })),
+
+        {
+            wallet: "No More Wallets",
+            income: 0,
+            expense: 0,
+            balance: 0,
+            isPlaceholder: true
+        }
+    ];
 
     return (
         <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6">
@@ -56,17 +68,39 @@ const WalletOverview = ({ data = [] }) => {
                                     x1={wallet.wallet}
                                     x2={wallet.wallet}
                                     fill={
-                                        WALLET_COLORS[
-                                            index % WALLET_COLORS.length
-                                        ]
+                                        wallet.isPlaceholder
+                                            ? "#F3F4F6"
+                                            : WALLET_COLORS[index % WALLET_COLORS.length]
                                     }
-                                    fillOpacity={0.7}
+                                    fillOpacity={wallet.isPlaceholder ? 1 : 0.7}
                                 />
                             ))}
 
                             <CartesianGrid strokeDasharray="2 3" />
 
-                            <XAxis dataKey="wallet" />
+                            <XAxis
+                                dataKey="wallet"
+                                tick={({ x, y, payload }) => (
+                                    <text
+                                        x={x}
+                                        y={y + 15}
+                                        textAnchor="middle"
+                                        fill={
+                                            payload.value === "No More Wallets"
+                                                ? "#6B7280"
+                                                : "#111827"
+                                        }
+                                        fontWeight={
+                                            payload.value === "No More Wallets"
+                                                ? "600"
+                                                : "400"
+                                        }
+                                        fontSize={12}
+                                    >
+                                        {payload.value}
+                                    </text>
+                                )}
+                            />
 
                             <YAxis />
 
