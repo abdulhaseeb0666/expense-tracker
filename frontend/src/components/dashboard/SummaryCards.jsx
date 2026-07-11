@@ -1,7 +1,11 @@
 import { FaArrowUp, FaArrowDown, FaWallet } from "react-icons/fa";
 import formatCurrency from "../../utils/formatCurrency";
+import useAuth from "../../hooks/useAuth";
 
 const SummaryCards = ({ data }) => {
+
+    const { user } = useAuth();
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
@@ -17,7 +21,10 @@ const SummaryCards = ({ data }) => {
                 </div>
 
                 <h3 className="text-2xl font-bold text-emerald-600 mt-3">
-                    {formatCurrency(data?.income || 0)}
+                    {formatCurrency(
+                            data?.income || 0,
+                            user?.currency
+                        )}
                 </h3>
 
             </div>
@@ -34,7 +41,10 @@ const SummaryCards = ({ data }) => {
                 </div>
 
                 <h3 className="text-2xl font-bold text-red-500 mt-3">
-                    {formatCurrency(data?.expense || 0)}
+                    {formatCurrency(
+                            data?.expense || 0,
+                            user?.currency
+                        )}
                 </h3>
 
             </div>
@@ -51,7 +61,10 @@ const SummaryCards = ({ data }) => {
                 </div>
 
                 <h3 className="text-2xl font-bold text-slate-800 mt-3">
-                    {formatCurrency(data?.balance || 0)}
+                    {formatCurrency(
+                            data?.balance || 0,
+                            user?.currency
+                        )}
                 </h3>
 
             </div>

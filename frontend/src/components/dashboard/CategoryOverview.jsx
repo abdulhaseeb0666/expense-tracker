@@ -10,6 +10,7 @@ import {
 } from "recharts";
 
 import formatCurrency from "../../utils/formatCurrency";
+import useAuth from "../../hooks/useAuth";
 
 const COLORS = [
     "#7dd3fc", // light blue
@@ -21,6 +22,8 @@ const COLORS = [
 ];
 
 const CategoryOverview = ({ data = [] }) => {
+
+    const { user } = useAuth();
 
     const chartData = data.map((item) => ({
         category: item._id,
@@ -81,7 +84,10 @@ const CategoryOverview = ({ data = [] }) => {
                                     border: "none",
                                     boxShadow: "0 8px 30px rgba(0,0,0,.1)"
                                 }}
-                                formatter={(value) => formatCurrency(value)}
+                                formatter={(value) => formatCurrency(
+                                                            value,
+                                                            user?.currency
+                                                        )}
                             />
 
                             <Legend />

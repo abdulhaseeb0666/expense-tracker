@@ -1,4 +1,5 @@
 import formatCurrency from "../../utils/formatCurrency";
+import useAuth from "../../hooks/useAuth";
 import useTransactions from "../../hooks/useTransactions";
 import { FaRegTrashAlt , FaEdit } from "react-icons/fa";
 import Modal from "../common/Modal";
@@ -10,6 +11,7 @@ import { toast } from "react-toastify";
 
 const TransactionCard = ({ transaction }) => {
 
+    const { user } = useAuth();
     const { wallets } = useWallets();
     const { editTransaction ,  removeTransaction ,  error } = useTransactions();
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -129,7 +131,10 @@ const TransactionCard = ({ transaction }) => {
                             }
                         `}
                     >
-                        {formatCurrency(transaction.amount)}
+                        {formatCurrency(
+                            transaction.amount,
+                            user?.currency
+                        )}
                     </h2>
 
                     <div className="flex justify-end gap-3 mt-3">

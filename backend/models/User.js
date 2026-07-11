@@ -46,7 +46,7 @@ const userSchema = new mongoose.Schema(
 
     currency: {
         type: String,
-        default: "PKR"
+        default: "USD"
     },
 
     isVerified: {

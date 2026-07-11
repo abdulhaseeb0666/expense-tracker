@@ -1,7 +1,10 @@
 import { FaWallet } from "react-icons/fa";
 import formatCurrency from "../../utils/formatCurrency";
+import useAuth from "../../hooks/useAuth";
 
 const BalanceCard = ({ balance }) => {
+    const { user } = useAuth();
+
     return (
         <div className="relative overflow-hidden bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
 
@@ -17,7 +20,10 @@ const BalanceCard = ({ balance }) => {
                     </p>
 
                     <h2 className="text-3xl font-bold text-slate-800 mt-1">
-                        {formatCurrency(balance)}
+                        {formatCurrency(
+                            balance,
+                            user?.currency
+                        )}
                     </h2>
                 </div>
 

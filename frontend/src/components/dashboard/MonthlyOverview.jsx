@@ -20,8 +20,11 @@ const COLORS = [
 ];
 
 import formatCurrency from "../../utils/formatCurrency";
+import useAuth from "../../hooks/useAuth";
 
 const MonthlyOverview = ({ data = [] }) => {
+
+    const { user } = useAuth();
 
     const monthlyMap = {};
 
@@ -101,7 +104,10 @@ const MonthlyOverview = ({ data = [] }) => {
                                         border: "none",
                                         boxShadow: "0 8px 30px rgba(0,0,0,.1)"
                                     }}
-                                    formatter={(value) => formatCurrency(value)}
+                                    formatter={(value) => formatCurrency(
+                                                                value,
+                                                                user?.currency
+                                                            )}
                                 />
                                     
                                 <Bar

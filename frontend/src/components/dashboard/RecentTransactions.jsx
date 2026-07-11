@@ -3,8 +3,11 @@ import {
     FaArrowTrendUp,
     FaArrowTrendDown
 } from "react-icons/fa6";
+import useAuth from "../../hooks/useAuth";
 
 const RecentTransactions = ({ transactions = [] }) => {
+
+    const { user } = useAuth();
 
     return (
         <div className="
@@ -127,7 +130,10 @@ const RecentTransactions = ({ transactions = [] }) => {
                                     {transaction.type === "income"
                                         ? "+"
                                         : "-"}
-                                    {formatCurrency(transaction.amount)}
+                                    {formatCurrency(
+                                        transaction.amount,
+                                        user?.currency
+                                    )}
                                 </p>
 
                                 <span

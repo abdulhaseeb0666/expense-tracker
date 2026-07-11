@@ -5,9 +5,12 @@ import EditBudgetForm from "./Edit BudgetForm";
 import Modal from "../common/Modal";
 import Loader from "../../components/common/Loader";
 import { useState , useEffect } from "react";
+import useAuth from "../../hooks/useAuth";
+import formatCurrency from "../../utils/formatCurrency";
 
 const BudgetCard = ({ budget }) => {
 
+    const { user } = useAuth();
     const { removeBudget , editBudget } = useBudgets();
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -94,7 +97,10 @@ const BudgetCard = ({ budget }) => {
                             text-slate-800
                         "
                     >
-                        Rs {budget.budget}
+                        {formatCurrency(
+                            budget.budget,
+                            user?.currency
+                        )}
                     </h2>
 
                     <p className="text-slate-500">

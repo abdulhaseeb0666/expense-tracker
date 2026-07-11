@@ -217,6 +217,10 @@ const Profile = () => {
                                 {user?.email}
                             </p>
 
+                            <div className="mt-3 px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 text-sm font-medium">
+                                Preferred Currency: {user?.currency || "PKR"}
+                            </div>
+
                         </div>
 
                     </div>
@@ -320,6 +324,60 @@ const Profile = () => {
                                         focus:ring-[#5E9C89]
                                     "
                                 />
+
+                            </div>
+
+                            {/* Currency */}
+
+                            <div>
+
+                                <label
+                                    className="
+                                        block
+                                        text-sm
+                                        font-medium
+                                        text-slate-600
+                                        mb-2
+                                    "
+                                >
+                                    Preferred Currency
+                                </label>
+
+                                <select
+                                    name="currency"
+                                    value={formData.currency}
+                                    onChange={handleChange}
+                                    className="
+                                        w-full
+                                        px-4
+                                        py-3
+                                        rounded-xl
+                                        border
+                                        border-[#D9E8E3]
+                                        bg-white
+                                        focus:outline-none
+                                        focus:ring-2
+                                        focus:ring-[#5E9C89]
+                                    "
+                                >
+                                    <option value="USD">USD - US Dollar</option>
+                                    <option value="EUR">EUR - Euro</option>
+                                    <option value="GBP">GBP - British Pound</option>
+                                    <option value="PKR">PKR - Pakistani Rupee</option>
+                                    <option value="INR">INR - Indian Rupee</option>
+                                    <option value="AED">AED - UAE Dirham</option>
+                                    <option value="SAR">SAR - Saudi Riyal</option>
+                                    <option value="QAR">QAR - Qatari Riyal</option>
+                                    <option value="CAD">CAD - Canadian Dollar</option>
+                                    <option value="AUD">AUD - Australian Dollar</option>
+                                    <option value="JPY">JPY - Japanese Yen</option>
+                                    <option value="CNY">CNY - Chinese Yuan</option>
+                                </select>
+
+                                <p className="text-xs text-slate-500 mt-2">
+                                    This currency will be used throughout your dashboard,
+                                    charts, wallets and transactions.
+                                </p>
 
                             </div>
 

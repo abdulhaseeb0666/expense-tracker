@@ -1,7 +1,10 @@
 import formatCurrency from "../../utils/formatCurrency";
 import { FaWallet, FaRegTrashAlt  } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
 
 const WalletCard = ({ wallet, onDelete }) => {
+
+    const { user } = useAuth();
 
     const handleDelete = () => {
 
@@ -86,7 +89,10 @@ const WalletCard = ({ wallet, onDelete }) => {
                         text-[#2F6B5F]
                     "
                 >
-                    {formatCurrency(wallet.balance)}
+                    {formatCurrency(
+                        wallet.balance,
+                        user?.currency
+                    )}
                 </h2>
 
             </div>

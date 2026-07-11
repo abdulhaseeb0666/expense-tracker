@@ -21,9 +21,12 @@ const WALLET_COLORS = [
 ];
 
 import formatCurrency from "../../utils/formatCurrency";
+import useAuth from "../../hooks/useAuth";
 
 const WalletOverview = ({ data = [] }) => {
-
+    
+    const { user } = useAuth();
+    
     const chartData = [
         ...data.map((wallet) => ({
             wallet: wallet.walletName,
@@ -113,7 +116,10 @@ const WalletOverview = ({ data = [] }) => {
                                     backgroundColor: "#ffffff",
                                     boxShadow: "0 8px 25px rgba(0,0,0,.15)"
                                 }}
-                                formatter={(value) => formatCurrency(value)}
+                                formatter={(value) => formatCurrency(
+                                                        value,
+                                                        user?.currency
+                                                    )}
                             />
 
                             <Bar
